@@ -1,16 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://yoonverse.in/</loc><lastmod>2026-10-18</lastmod></url>
-  <url><loc>https://yoonverse.in/about</loc><lastmod>2026-10-18</lastmod></url>
-  <url><loc>https://yoonverse.in/blog/</loc><lastmod>2026-10-18</lastmod></url>
-  <url><loc>https://yoonverse.in/contact</loc><lastmod>2026-10-18</lastmod></url>
-  <url><loc>https://yoonverse.in/blog/semantic-seo-triples-knowledge-graph</loc><lastmod>2026-10-18</lastmod></url>
-  <url><loc>https://yoonverse.in/blog/visual-semantic-seo-guide</loc><lastmod>2026-10-18</lastmod></url>
-  <url><loc>https://yoonverse.in/blog/topical-authority-content-clusters</loc><lastmod>2026-10-18</lastmod></url>
-  <url><loc>https://yoonverse.in/blog/seo-analyst-search-console-audit-framework</loc><lastmod>2026-10-18</lastmod></url>
-  <url><loc>https://yoonverse.in/blog/how-google-search-works</loc><lastmod>2026-10-18</lastmod></url>
-  <url><loc>https://yoonverse.in/blog/keyword-research-for-beginners</loc><lastmod>2026-10-18</lastmod></url>
-  <url><loc>https://yoonverse.in/blog/technical-seo-checklist</loc><lastmod>2026-10-18</lastmod></url>
-  <url><loc>https://yoonverse.in/blog/how-to-track-ai-traffic-in-ga4</loc><lastmod>2026-10-18</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://yoonverse.in/</loc>
+    <lastmod>2026-10-18</lastmod>
+    <image:image>
+      <image:loc>https://yoonverse.in/ashiq-seo-analyst-semantic-graph-india.jpg</image:loc>
+      <image:title>Ashiq — SEO Strategist &amp; Organic Search Analyst in India | Semantic Knowledge Graph Architecture</image:title>
+      <image:caption>Semantic Knowledge Graph, Subject-Predicate-Object triples, and +318% organic search telemetry engineered by Ashiq at Yoonverse (yoonverse.in) in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://yoonverse.in/ashiq-semantic-seo-architecture-india.svg</image:loc>
+      <image:title>Yoonverse Semantic SEO Architecture &amp; Topical Authority Graph (India)</image:title>
+      <image:caption>Vector schematic of Subject-Predicate-Object semantic triples connecting entity Ashiq (#ashiq) to Google Knowledge Graph nodes in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://yoonverse.in/yoonverse.png</image:loc>
+      <image:title>Ashiq — Founder &amp; SEO Strategist at Yoonverse (India)</image:title>
+      <image:caption>Portrait of Ashiq, SEO Strategist and Organic Search Analyst in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://yoonverse.in/about</loc>
+    <lastmod>2026-10-18</lastmod>
+    <image:image>
+      <image:loc>https://yoonverse.in/yoonverse.png</image:loc>
+      <image:title>Ashiq — SEO Strategist &amp; Organic Search Analyst in India</image:title>
+      <image:caption>Ashiq, founder of Yoonverse (yoonverse.in), specializing in Semantic SEO, Knowledge Graph triples, and search analytics in India.</image:caption>
+      <image:geo_location>India</image:geo_location>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://yoonverse.in/blog/</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://yoonverse.in/contact</loc>
+    <lastmod>2026-10-18</lastmod>
+  </url>
+  <url>
+    <loc>https://yoonverse.in/blog/semantic-seo-triples-knowledge-graph</loc>
+    <lastmod>2026-10-18</lastmod>
+    <image:image>
+      <image:loc>https://yoonverse.in/ashiq-semantic-seo-architecture-india.svg</image:loc>
+      <image:title>Semantic SEO Triples (Subject-Predicate-Object) &amp; Knowledge Graph Architecture</image:title>
+      <image:caption>How Subject-Predicate-Object triples and EAV matrices map website entities into Google's Knowledge Graph.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://yoonverse.in/blog/visual-semantic-seo-guide</loc>
+    <lastmod>2026-10-18</lastmod>
+    <image:image>
+      <image:loc>https://yoonverse.in/ashiq-seo-analyst-semantic-graph-india.jpg</image:loc>
+      <image:title>Visual Semantic SEO Above-the-Fold Hero Architecture for Google Vision AI</image:title>
+      <image:caption>Optimizing above-the-fold hero visuals with legible OCR telemetry, entity diagrams, and ImageObject representativeOfPage schema.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://yoonverse.in/blog/topical-authority-content-clusters</loc>
+    <lastmod>2026-10-18</lastmod>
+    <image:image>
+      <image:loc>https://yoonverse.in/ashiq-semantic-seo-architecture-india.svg</image:loc>
+      <image:title>Topical Authority Content Cluster &amp; Hub-and-Spoke Internal Link Architecture</image:title>
+      <image:caption>How interlinked topical clusters establish domain-wide SEO authority without keyword stuffing.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://yoonverse.in/blog/seo-analyst-search-console-audit-framework</loc>
+    <lastmod>2026-10-18</lastmod>
+    <image:image>
+      <image:loc>https://yoonverse.in/ashiq-seo-analyst-semantic-graph-india.jpg</image:loc>
+      <image:title>SEO Analyst Search Console Audit Framework — Query, CTR &amp; Entity Diagnostics</image:title>
+      <image:caption>Diagnostic framework for auditing Search Console queries, striking-distance rankings, CTR gaps, and indexation states.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://yoonverse.in/blog/how-google-search-works</loc>
+    <lastmod>2026-10-18</lastmod>
+    <image:image>
+      <image:loc>https://yoonverse.in/ashiq-semantic-seo-architecture-india.svg</image:loc>
+      <image:title>How Google Search Works: Crawling, Rendering, Entity Indexing &amp; Ranking</image:title>
+      <image:caption>The 4-stage pipeline of Google Search from URL discovery and Web Rendering Service to Knowledge Graph ranking.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://yoonverse.in/blog/keyword-research-for-beginners</loc>
+    <lastmod>2026-10-18</lastmod>
+    <image:image>
+      <image:loc>https://yoonverse.in/ashiq-seo-analyst-semantic-graph-india.jpg</image:loc>
+      <image:title>Search Intent &amp; Semantic Keyword Research Framework</image:title>
+      <image:caption>Mapping informational, commercial, and transactional search intent to dedicated URLs.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://yoonverse.in/blog/technical-seo-checklist</loc>
+    <lastmod>2026-10-18</lastmod>
+    <image:image>
+      <image:loc>https://yoonverse.in/ashiq-semantic-seo-architecture-india.svg</image:loc>
+      <image:title>10-Point Technical SEO Audit Checklist</image:title>
+      <image:caption>Technical SEO architecture covering crawlability, canonicalization, Core Web Vitals, and JSON-LD schema.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://yoonverse.in/blog/how-to-track-ai-traffic-in-ga4</loc>
+    <lastmod>2026-10-18</lastmod>
+    <image:image>
+      <image:loc>https://yoonverse.in/ashiq-seo-analyst-semantic-graph-india.jpg</image:loc>
+      <image:title>Tracking AI Search Traffic (ChatGPT, Perplexity, Gemini, Copilot) in GA4</image:title>
+      <image:caption>GA4 exploration and regex configuration for measuring referrals from AI answer engines.</image:caption>
+    </image:image>
+  </url>
 </urlset>
-

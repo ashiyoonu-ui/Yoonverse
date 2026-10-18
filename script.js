@@ -1174,7 +1174,216 @@ document.addEventListener('DOMContentLoaded', () => {
     render();
   }
 
-  // Initialize Cosmos Stage and Liquid Wordmark
+  // 8. Interactive Semantic Triple & JSON-LD Schema Builder
+  function initTripleSchemaBuilder() {
+    const subInput = document.getElementById('sbSubject');
+    const typeInput = document.getElementById('sbType');
+    const predInput = document.getElementById('sbPredicate');
+    const objInput = document.getElementById('sbObject');
+    const objWikiInput = document.getElementById('sbObjectWiki');
+    const specInput = document.getElementById('sbSpecialty');
+    const specWikiInput = document.getElementById('sbSpecialtyWiki');
+    const idInput = document.getElementById('sbEntityId');
+    const sameAsInput = document.getElementById('sbSameAs');
+
+    const outSub = document.getElementById('sbOutSub');
+    const outPred = document.getElementById('sbOutPred');
+    const outObj = document.getElementById('sbOutObj');
+    const outProse = document.getElementById('sbOutProse');
+    const codeOutput = document.getElementById('sbCodeOutput');
+    const codeFilename = document.getElementById('sbCodeFilename');
+    const copyBtn = document.getElementById('sbCopyBtn');
+    const tabs = document.querySelectorAll('.builder-tab');
+    const presets = document.querySelectorAll('.sb-preset');
+
+    if (!subInput || !codeOutput) return;
+
+    let currentTab = 'jsonld';
+
+    const templates = {
+      analyst: {
+        subject: 'Ashiq',
+        type: 'Person',
+        predicate: 'operates as SEO Strategist & Organic Search Analyst in',
+        object: 'India',
+        objWiki: 'https://www.wikidata.org/wiki/Q668',
+        specialty: 'Search Engine Optimization & Semantic Web',
+        specWiki: 'https://www.wikidata.org/wiki/Q180711',
+        entityId: 'https://yoonverse.in/#ashiq',
+        sameAs: 'https://www.instagram.com/yoonu_verse/'
+      },
+      saas: {
+        subject: 'Yoonverse Search Telemetry',
+        type: 'SoftwareApplication',
+        predicate: 'automates Semantic Triple & Search Intent diagnostics for',
+        object: 'Organic Search Teams',
+        objWiki: 'https://www.wikidata.org/wiki/Q816826',
+        specialty: 'Knowledge Graph Entity Extraction',
+        specWiki: 'https://www.wikidata.org/wiki/Q33002955',
+        entityId: 'https://yoonverse.in/#triple-schema-builder',
+        sameAs: 'https://www.instagram.com/yoonu_verse/'
+      },
+      agency: {
+        subject: 'Yoonverse',
+        type: 'EducationalOrganization',
+        predicate: 'publishes open-access Semantic SEO & Topical Authority research in',
+        object: 'India',
+        objWiki: 'https://www.wikidata.org/wiki/Q668',
+        specialty: 'Semantic Web & Search Analytics',
+        specWiki: 'https://www.wikidata.org/wiki/Q54837',
+        entityId: 'https://yoonverse.in/#organization',
+        sameAs: 'https://www.instagram.com/yoonu_verse/'
+      },
+      article: {
+        subject: 'Semantic SEO & Knowledge Graph Triples Guide',
+        type: 'TechArticle',
+        predicate: 'explains Subject-Predicate-Object entity engineering for',
+        object: 'Google Knowledge Graph',
+        objWiki: 'https://www.wikidata.org/wiki/Q33002955',
+        specialty: 'Search Engine Optimization',
+        specWiki: 'https://www.wikidata.org/wiki/Q180711',
+        entityId: 'https://yoonverse.in/blog/semantic-seo-triples-knowledge-graph#article',
+        sameAs: 'https://yoonverse.in/#ashiq'
+      }
+    };
+
+    function renderBuilder() {
+      const sub = (subInput.value || 'Entity').trim();
+      const type = typeInput.value || 'Person';
+      const pred = (predInput.value || 'operates in').trim();
+      const obj = (objInput.value || 'India').trim();
+      const objWiki = (objWikiInput.value || 'https://www.wikidata.org/wiki/Q668').trim();
+      const spec = (specInput.value || 'Search Engine Optimization').trim();
+      const specWiki = (specWikiInput.value || 'https://www.wikidata.org/wiki/Q180711').trim();
+      const entityId = (idInput.value || 'https://yoonverse.in/#ashiq').trim();
+      const sameAs = (sameAsInput.value || '').trim();
+
+      outSub.textContent = `[Subject: ${sub}]`;
+      outPred.textContent = `[Predicate: ${pred}]`;
+      outObj.textContent = `[Object: ${obj}]`;
+      outProse.innerHTML = `<strong>Extractive Lead Sentence:</strong> "${sub} ${pred} ${obj}, specializing in ${spec}."`;
+
+      if (currentTab === 'jsonld') {
+        codeFilename.textContent = 'schema-graph.jsonld';
+        const graphNode = {
+          '@type': type,
+          '@id': entityId,
+          'name': sub,
+          'description': `${sub} ${pred} ${obj}, specializing in ${spec}.`,
+          'url': entityId.split('#')[0] || entityId
+        };
+
+        if (type === 'Person') {
+          graphNode.jobTitle = pred.replace(/^operates as\s+/i, '').replace(/\s+in$/i, '');
+          graphNode.workLocation = {
+            '@type': 'Country',
+            'name': obj,
+            'sameAs': objWiki
+          };
+        } else if (type === 'Organization' || type === 'EducationalOrganization') {
+          graphNode.areaServed = {
+            '@type': 'Country',
+            'name': obj,
+            'sameAs': objWiki
+          };
+        } else {
+          graphNode.about = {
+            '@type': 'Thing',
+            'name': obj,
+            'sameAs': objWiki
+          };
+        }
+
+        graphNode.knowsAbout = [
+          {
+            '@type': 'Thing',
+            'name': spec,
+            'sameAs': specWiki
+          }
+        ];
+
+        if (sameAs) {
+          graphNode.sameAs = [sameAs];
+        }
+
+        const schemaObj = {
+          '@context': 'https://schema.org',
+          '@graph': [graphNode]
+        };
+
+        codeOutput.textContent = `<script type="application/ld+json">\n${JSON.stringify(schemaObj, null, 2)}\n<\/script>`;
+      } else {
+        codeFilename.textContent = 'semantic-eav-matrix.html';
+        codeOutput.textContent =
+`<dl class="eav-dl" itemscope itemtype="https://schema.org/${type}" itemid="${entityId}">
+  <div class="eav-pair">
+    <dt>Entity Subject (@type: ${type})</dt>
+    <dd itemprop="name">${sub}</dd>
+  </div>
+  <div class="eav-pair">
+    <dt>Predicate &amp; Object Scope</dt>
+    <dd>${pred} <strong>${obj}</strong> (<code>${objWiki}</code>)</dd>
+  </div>
+  <div class="eav-pair">
+    <dt>Core Topical Authority (knowsAbout)</dt>
+    <dd itemprop="knowsAbout">${spec} (<code>${specWiki}</code>)</dd>
+  </div>${sameAs ? `\n  <div class="eav-pair">\n    <dt>Verified Entity Reconciliation (sameAs)</dt>\n    <dd><a href="${sameAs}" itemprop="sameAs" rel="noopener me">${sameAs}</a></dd>\n  </div>` : ''}
+</dl>`;
+      }
+    }
+
+    [subInput, typeInput, predInput, objInput, objWikiInput, specInput, specWikiInput, idInput, sameAsInput].forEach(el => {
+      if (el) {
+        el.addEventListener('input', renderBuilder);
+        el.addEventListener('change', renderBuilder);
+      }
+    });
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentTab = tab.dataset.tab;
+        renderBuilder();
+      });
+    });
+
+    presets.forEach(btn => {
+      btn.addEventListener('click', () => {
+        presets.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        const t = templates[btn.dataset.template];
+        if (!t) return;
+        subInput.value = t.subject;
+        typeInput.value = t.type;
+        predInput.value = t.predicate;
+        objInput.value = t.object;
+        objWikiInput.value = t.objWiki;
+        specInput.value = t.specialty;
+        specWikiInput.value = t.specWiki;
+        idInput.value = t.entityId;
+        sameAsInput.value = t.sameAs;
+        renderBuilder();
+      });
+    });
+
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        const text = codeOutput.textContent || '';
+        navigator.clipboard.writeText(text).then(() => {
+          const orig = copyBtn.textContent;
+          copyBtn.textContent = '✓ Copied to Clipboard!';
+          setTimeout(() => { copyBtn.textContent = orig; }, 2000);
+        });
+      });
+    }
+
+    renderBuilder();
+  }
+
+  // Initialize Cosmos Stage, Liquid Wordmark, and Triple Schema Builder
   initCosmosStage();
   initLiquidWordmark();
+  initTripleSchemaBuilder();
 });
+

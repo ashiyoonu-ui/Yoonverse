@@ -1,0 +1,49 @@
+﻿# Yoonverse (yoonverse.in) â€” Open-Access Semantic SEO & Search Analytics Research
+
+> Yoonverse (`https://yoonverse.in`) is an independent, open-access SEO research and education publication authored by **Ashiq**, an SEO Strategist & Organic Search Analyst in India (`IN`, Wikidata `Q668`). Yoonverse specializes in Semantic SEO triples (Subjectâ€“Predicateâ€“Object), Knowledge Graph engineering, Visual Semantic SEO, Topical Authority content clusters, Technical SEO audits, and GA4 AI search analytics.
+
+## Primary Entity Profile (EAV / Knowledge Graph Node)
+- **Entity ID**: `https://yoonverse.in/#ashiq`
+- **Name**: Ashiq
+- **Occupation / Role**: SEO Strategist & Organic Search Analyst
+- **Geographic Jurisdiction**: India (`IN` Â· Wikidata `Q668`)
+- **Primary Publication**: Yoonverse (`https://yoonverse.in`)
+- **Contact**: `mailto:hello@yoonverse.in`
+- **Instagram (sameAs Entity Link)**: https://www.instagram.com/yoonu_verse/ (@yoonu_verse)
+- **Core Specializations**:
+  - Semantic SEO & Knowledge Graph Triples (`Subject -> Predicate -> Object`, Entityâ€“Attributeâ€“Value `<dl>` matrices, connected JSON-LD `@graph`)
+  - Visual Semantic SEO (`fetchpriority="high"` above-the-fold `<figure>` architecture, Google Cloud Vision AI OCR & entity extraction, `ImageObject` `representativeOfPage`)
+  - Topical Authority & Content Clusters (Hub-and-spoke internal link graphs, zero-cannibalization intent mapping)
+  - Technical SEO & Search Analytics (Google Search Console query-to-page diagnostic matrices, Crawl-Render-Index pipelines, Core Web Vitals, GA4 AI referral attribution)
+
+## Core Semantic Triples (Subject -> Predicate -> Object)
+1. `[Ashiq (Entity #ashiq)]` -> `[operates as]` -> `[SEO Strategist & Organic Search Analyst in India (Q668)]`
+2. `[Yoonverse (yoonverse.in)]` -> `[publishes]` -> `[Open-Access Semantic SEO & Topical Authority Frameworks]`
+3. `[Semantic Triples (SPO)]` -> `[connect]` -> `[Brand Entities to Google Knowledge Graph Nodes]`
+4. `[Above-the-Fold Visual Entities]` -> `[reinforce]` -> `[Multimodal Search & Vision AI Entity Confidence]`
+5. `[Interlinked Content Clusters]` -> `[establish]` -> `[Domain-Wide Topical Authority Without Keyword Stuffing]`
+
+## Canonical Site Structure
+- [Homepage â€” Yoonverse Semantic SEO & Topical Authority Hub](https://yoonverse.in/): Above-the-fold Visual Semantic SEO architecture, interactive Search Intent & Semantic Triple Decoder, EAV Knowledge Graph matrix, and 4-Pillar Topical Cluster Hub.
+- [About Ashiq â€” SEO Strategist & Organic Search Analyst (India)](https://yoonverse.in/about): Full strategist profile, EAV attribute specification, and editorial philosophy.
+- [SEO Blog & Topical Clusters Index](https://yoonverse.in/blog/): Complete index of all 8 interlinked SEO guides across 4 topical pillars.
+- [Contact Ashiq](https://yoonverse.in/contact): Direct consultation, technical SEO questions, and topic suggestions (`hello@yoonverse.in`).
+
+## Topical Authority Content Clusters (8 Comprehensive Guides)
+
+### Cluster 01: Semantic SEO & Knowledge Graph Engineering
+- [Semantic SEO & Knowledge Graph Triples: How Google Understands Entities](https://yoonverse.in/blog/semantic-seo-triples-knowledge-graph): Engineering Subjectâ€“Predicateâ€“Object (SPO) triples, Entityâ€“Attributeâ€“Value (EAV) HTML `<dl>` tables, and connected `@graph` JSON-LD with Wikidata `sameAs` reconciliation.
+- [How Google Search Actually Works (In Plain English)](https://yoonverse.in/blog/how-google-search-works): The 4-stage pipeline of modern search: Crawling, Rendering, Entity Indexing, and Intent-Based Ranking.
+
+### Cluster 02: Visual Semantic SEO & Multimodal Search
+- [Visual Semantic SEO: Optimizing Above-the-Fold Images for Google Vision AI](https://yoonverse.in/blog/visual-semantic-seo-guide): How Google Cloud Vision AI extracts OCR text and entity labels from hero images, and how to pair `fetchpriority="high"` `<figure>` elements with `ImageObject` (`representativeOfPage: true`).
+
+### Cluster 03: Topical Authority & Content Architecture
+- [Topical Authority & Content Clusters: How to Rank Without Keyword Stuffing](https://yoonverse.in/blog/topical-authority-content-clusters): Designing hub-and-spoke content networks, mapping distinct search intents per URL, and building semantic anchor text graphs.
+- [Keyword Research for Beginners: Find What People Actually Search](https://yoonverse.in/blog/keyword-research-for-beginners): Decoding informational, commercial, and transactional search intent before writing a single word.
+
+### Cluster 04: Technical SEO & Search Analytics
+- [The SEO Analyst Playbook: Auditing Queries, CTR & Entity Signals in Search Console](https://yoonverse.in/blog/seo-analyst-search-console-audit-framework): Finding Position 4â€“15 striking-distance queries, diagnosing CTR gaps, eliminating URL cannibalization, and auditing indexing states.
+- [A Calm, 10-Point Technical SEO Checklist for Any Website](https://yoonverse.in/blog/technical-seo-checklist): Auditing indexability, canonical tags, XML sitemaps, internal link depth, Core Web Vitals (LCP, INP, CLS), and structured data.
+- [How to Track AI Traffic in GA4 (ChatGPT, Perplexity, Gemini & Copilot)](https://yoonverse.in/blog/how-to-track-ai-traffic-in-ga4): Building custom GA4 Explorations and regex channel filters to measure referrals from generative AI answer engines.
+

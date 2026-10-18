@@ -34,7 +34,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="/style.css?v=4.0">
+  <link rel="stylesheet" href="/style.css?v=4.1">
   <script>(function () { try { const t = localStorage.getItem('yoonverse_theme'); if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme:dark)').matches)) { document.documentElement.setAttribute('data-theme', 'dark'); } } catch (e) { } })();</script>
   <script type="application/ld+json">
   {
@@ -112,6 +112,7 @@
         "@id": "https://yoonverse.in/#organization",
         "name": "Yoonverse",
         "url": "https://yoonverse.in/",
+        "sameAs": ["https://www.instagram.com/yoonu_verse/"],
         "logo": { "@id": "https://yoonverse.in/#founder-portrait" },
         "founder": { "@id": "https://yoonverse.in/#ashiq" },
         "areaServed": [
@@ -141,6 +142,21 @@
         "mainEntity": { "@id": "https://yoonverse.in/#ashiq" },
         "primaryImageOfPage": { "@id": "https://yoonverse.in/#primaryimage" },
         "inLanguage": "en-IN"
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://yoonverse.in/#triple-schema-builder",
+        "name": "Yoonverse Semantic Triple & JSON-LD Entity Schema Builder",
+        "url": "https://yoonverse.in/#triple-schema-builder",
+        "applicationCategory": "SEOApplication",
+        "operatingSystem": "All",
+        "description": "Free interactive Semantic SEO tool engineered by Ashiq (India) to generate Subject-Predicate-Object (SPO) triples, Entity-Attribute-Value (EAV) HTML definition lists, and connected JSON-LD @graph schema with Wikidata reconciliation.",
+        "author": { "@id": "https://yoonverse.in/#ashiq" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "INR"
+        }
       }
     ]
   }
@@ -612,6 +628,126 @@
       </div>
     </section>
 
+    <!-- ---------- INTERACTIVE SEMANTIC TRIPLE & JSON-LD SCHEMA BUILDER ---------- -->
+    <section class="section schema-builder-section" id="triple-schema-builder" aria-labelledby="schema-builder-heading">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Free Interactive SEO Utility · SPO &amp; JSON-LD Generator</span>
+            <h2 class="reveal" id="schema-builder-heading">Build your <em class="accent">Semantic Triple</em> &amp; JSON-LD <code>@graph</code>.</h2>
+          </div>
+          <p class="lead reveal" style="max-width:460px">Define your Subject, Predicate, and Object below to generate extractive NLP prose, an HTML EAV <code>&lt;dl&gt;</code> block, and connected Schema.org JSON-LD with Wikidata grounding.</p>
+        </div>
+
+        <div class="intent-presets reveal" style="margin-bottom:1.4rem">
+          <span class="presets-lbl">Load Entity Template:</span>
+          <button type="button" class="preset-chip sb-preset active" data-template="analyst">SEO Analyst / Strategist (Person)</button>
+          <button type="button" class="preset-chip sb-preset" data-template="saas">SaaS Platform (SoftwareApplication)</button>
+          <button type="button" class="preset-chip sb-preset" data-template="agency">B2B Consulting Firm (Organization)</button>
+          <button type="button" class="preset-chip sb-preset" data-template="article">Pillar Guide (TechArticle)</button>
+        </div>
+
+        <div class="schema-builder-grid reveal d1">
+          <!-- Left: Builder Inputs -->
+          <div class="builder-form-card">
+            <div class="builder-card-head">
+              <span class="eav-badge">Step 1 · Define Entity &amp; Triple Nodes</span>
+              <span class="builder-sub">Live Reactive Compiler</span>
+            </div>
+
+            <div class="builder-fields">
+              <div class="builder-row-2">
+                <div class="field">
+                  <label for="sbSubject">Subject (Primary Entity Name)</label>
+                  <input id="sbSubject" type="text" value="Ashiq" placeholder="e.g. Ashiq">
+                </div>
+                <div class="field">
+                  <label for="sbType">Schema.org Entity Type</label>
+                  <select id="sbType">
+                    <option value="Person" selected>Person (Strategist / Author)</option>
+                    <option value="Organization">Organization (Brand / Company)</option>
+                    <option value="EducationalOrganization">EducationalOrganization</option>
+                    <option value="SoftwareApplication">SoftwareApplication (SaaS / Tool)</option>
+                    <option value="TechArticle">TechArticle (Pillar Guide)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="sbPredicate">Predicate (Explicit Relationship / Role Attribute)</label>
+                <input id="sbPredicate" type="text" value="operates as SEO Strategist &amp; Organic Search Analyst in" placeholder="e.g. operates as SEO Strategist in">
+              </div>
+
+              <div class="builder-row-2">
+                <div class="field">
+                  <label for="sbObject">Object (Target Entity / Jurisdiction)</label>
+                  <input id="sbObject" type="text" value="India" placeholder="e.g. India">
+                </div>
+                <div class="field">
+                  <label for="sbObjectWiki">Object Wikidata URI</label>
+                  <input id="sbObjectWiki" type="url" value="https://www.wikidata.org/wiki/Q668" placeholder="https://www.wikidata.org/wiki/Q668">
+                </div>
+              </div>
+
+              <div class="builder-row-2">
+                <div class="field">
+                  <label for="sbSpecialty">Core Topical Expertise (knowsAbout)</label>
+                  <input id="sbSpecialty" type="text" value="Search Engine Optimization &amp; Semantic Web" placeholder="e.g. Search Engine Optimization">
+                </div>
+                <div class="field">
+                  <label for="sbSpecialtyWiki">Topic Wikidata URI</label>
+                  <input id="sbSpecialtyWiki" type="url" value="https://www.wikidata.org/wiki/Q180711" placeholder="https://www.wikidata.org/wiki/Q180711">
+                </div>
+              </div>
+
+              <div class="builder-row-2">
+                <div class="field">
+                  <label for="sbEntityId">Canonical Entity URI (<code>@id</code>)</label>
+                  <input id="sbEntityId" type="url" value="https://yoonverse.in/#ashiq" placeholder="https://yourdomain.com/#entity">
+                </div>
+                <div class="field">
+                  <label for="sbSameAs">Verified <code>sameAs</code> Profile URL</label>
+                  <input id="sbSameAs" type="url" value="https://www.instagram.com/yoonu_verse/" placeholder="https://www.instagram.com/...">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Live Triple + EAV + JSON-LD Output -->
+          <div class="builder-output-card">
+            <div class="builder-card-head">
+              <span class="eav-badge">Step 2 · Machine-Readable Output</span>
+              <div class="builder-tabs" role="tablist">
+                <button type="button" class="builder-tab active" data-tab="jsonld">JSON-LD @graph</button>
+                <button type="button" class="builder-tab" data-tab="eav">HTML &lt;dl&gt; EAV</button>
+              </div>
+            </div>
+
+            <!-- Live Visual Triple Bar -->
+            <div class="builder-live-triple">
+              <div class="triple-node-row">
+                <span class="t-node t-sub" id="sbOutSub">[Subject: Ashiq]</span>
+                <span class="t-arrow">→</span>
+                <span class="t-node t-pred" id="sbOutPred">[Predicate: operates as SEO Strategist &amp; Organic Search Analyst in]</span>
+                <span class="t-arrow">→</span>
+                <span class="t-node t-obj" id="sbOutObj">[Object: India]</span>
+              </div>
+              <p class="builder-prose-preview" id="sbOutProse"><strong>Extractive Lead Sentence:</strong> "Ashiq operates as an SEO Strategist &amp; Organic Search Analyst in India, specializing in Search Engine Optimization &amp; Semantic Web."</p>
+            </div>
+
+            <!-- Code Output Box -->
+            <div class="builder-code-wrap">
+              <div class="builder-code-toolbar">
+                <span class="builder-code-filename" id="sbCodeFilename">schema-graph.jsonld</span>
+                <button type="button" class="btn btn-dark btn-sm copy-schema-btn" id="sbCopyBtn">Copy Code</button>
+              </div>
+              <pre class="builder-code-pre"><code id="sbCodeOutput"></code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" style="background:var(--bg-soft)">
       <div class="container split">
         <div class="quote-card reveal">
@@ -771,8 +907,8 @@
           <h4>Connect</h4>
           <ul>
             <li><a href="mailto:hello@yoonverse.in">Email</a></li>
-            <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></li>
-            <li><a href="https://x.com/" target="_blank" rel="noopener">X / Twitter</a></li>
+            <li><a href="https://www.instagram.com/yoonu_verse/" target="_blank" rel="noopener me">Instagram (@yoonu_verse)</a></li>
+            <li><a href="/about">Ashiq · Entity Profile</a></li>
           </ul>
         </div>
       </div>
@@ -891,7 +1027,7 @@
           learners, hosted on Cloudflare</span></div>
     </div>
   </footer>
-  <script src="/script.js?v=3.2" defer></script>
+  <script src="/script.js?v=4.1" defer></script>
 </body>
 
 </html>
