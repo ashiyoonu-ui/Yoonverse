@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 
 <head>
   <meta charset="UTF-8">
@@ -7,8 +7,11 @@
   <title>How to Track AI Traffic in GA4 Using Free Form Exploration | Yoonverse</title>
   <meta name="description"
     content="Learn how to track referral traffic from ChatGPT, Gemini, Perplexity, Claude, and other AI platforms in Google Analytics 4 using Free form exploration and a regex filter.">
+  <meta name="author" content="Ashiq">
+  <meta name="geo.region" content="IN">
+  <meta name="geo.placename" content="India">
   <link rel="canonical" href="https://yoonverse.in/blog/how-to-track-ai-traffic-in-ga4">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#f6f1e8">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Yoonverse">
@@ -20,16 +23,16 @@
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/favicon-32x32.png" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <meta property="og:image" content="https://yoonverse.in/yoonverse.png">
+  <meta property="og:image" content="https://yoonverse.in/ashiq-seo-analyst-semantic-graph-india.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="/style.css?v=3.0">
+  <link rel="stylesheet" href="/style.css?v=4.0">
   <script>(function () { try { const t = localStorage.getItem('yoonverse_theme'); if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme:dark)').matches)) { document.documentElement.setAttribute('data-theme', 'dark'); } } catch (e) { } })();</script>
   <script
-    type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"How to Track AI Traffic in GA4 Using Free Form Exploration","description":"Learn how to track referral traffic from ChatGPT, Gemini, Perplexity, Claude, and other AI platforms in Google Analytics 4 using Free form exploration and a regex filter.","datePublished":"2026-10-18","dateModified":"2026-10-18","mainEntityOfPage":"https://yoonverse.in/blog/how-to-track-ai-traffic-in-ga4","author":{"@type":"Person","name":"Yoonverse"},"publisher":{"@type":"Organization","name":"Yoonverse","url":"https://yoonverse.in"}}</script>
+    type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"How to Track AI Traffic in GA4 Using Free Form Exploration","description":"Learn how to track referral traffic from ChatGPT, Gemini, Perplexity, Claude, and other AI platforms in Google Analytics 4 using Free form exploration and a regex filter.","datePublished":"2026-10-18","dateModified":"2026-10-18","inLanguage":"en-IN","mainEntityOfPage":"https://yoonverse.in/blog/how-to-track-ai-traffic-in-ga4","author":{"@type":"Person","@id":"https://yoonverse.in/#ashiq","name":"Ashiq","jobTitle":"SEO Strategist & Organic Search Analyst","url":"https://yoonverse.in/about","workLocation":{"@type":"Country","name":"India","sameAs":"https://www.wikidata.org/wiki/Q668"}},"publisher":{"@type":"Organization","@id":"https://yoonverse.in/#organization","name":"Yoonverse","url":"https://yoonverse.in"}}</script>
 </head>
 
 <body>
@@ -60,14 +63,26 @@
         <a href="/blog/" class="back-link">← All articles</a>
         <h1 class="reveal">How to Track AI Traffic in GA4 Using Free Form Exploration</h1>
         <div class="post-meta reveal d1"><span class="tag">Analytics</span><span>18 Oct
-            2026</span><span>·</span><span>6 min read</span></div>
+            2026</span><span>·</span><span>By <a href="/about">Ashiq</a></span><span>·</span><span>6 min read</span></div>
       </header>
       <div class="container">
-        <div class="post-thumb t4" style="max-width:960px;margin:0 auto 3.5rem;aspect-ratio:21/9"><span
-            class="glyph">AI</span></div>
+        <figure class="article-figure reveal">
+          <img src="/ashiq-seo-analyst-semantic-graph-india.jpg"
+            alt="GA4 AI referral traffic tracking and Generative Engine Optimization telemetry by Ashiq at Yoonverse India"
+            width="1200" height="675" fetchpriority="high" loading="eager" decoding="async">
+          <figcaption>LLM Referral Telemetry: Isolating ChatGPT, Gemini, Perplexity, and Claude sessions in Google Analytics 4.</figcaption>
+        </figure>
       </div>
       <div class="container">
         <div class="article-body prose">
+          <div class="article-triples-box">
+            <strong class="triples-title">⚡ Core Semantic Triples Extracted From This Guide</strong>
+            <ul>
+              <li><strong>[GA4 Free Form Exploration]</strong> —(isolates referral traffic from)→ <strong>[ChatGPT, Gemini, Perplexity &amp; Claude]</strong></li>
+              <li><strong>[Session Source / Medium Regex Filter]</strong> —(segments)→ <strong>[LLM Citation Landing Pages]</strong></li>
+              <li><strong>[Entrances Metric]</strong> —(identifies)→ <strong>[Primary AI Search Entry URLs]</strong></li>
+            </ul>
+          </div>
           <div class="toc"><strong>In this guide</strong>
             <ol>
               <li><a href="#step-1">Step 1: Open Free Form Exploration</a></li>
@@ -249,6 +264,14 @@
           <blockquote>As AI search engines and answer bots reshape how users discover information, measuring where AI referral traffic lands is the first step toward optimizing for LLM visibility.</blockquote>
 
           <p>Official reference: <a href="https://support.google.com/analytics/answer/9327972" target="_blank" rel="noopener">Google Analytics 4 Explorations Guide</a>.</p>
+          <div class="article-cluster-nav">
+            <h4>🕸️ Explore This Topical Cluster (Analytics, Audits &amp; AI Search)</h4>
+            <ul>
+              <li>Search Console Audit: <a href="/blog/seo-analyst-search-console-audit-framework">The SEO Analyst Playbook: Auditing Organic Growth with Google Search Console</a></li>
+              <li>Semantic Architecture: <a href="/blog/semantic-seo-triples-knowledge-graph">Semantic SEO Explained: Entities, Triples (SPO) &amp; Knowledge Graphs</a></li>
+              <li>Content Networks: <a href="/blog/topical-authority-content-clusters">Topical Authority &amp; Content Clusters: Building a Semantic Network</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </article>
@@ -353,6 +376,7 @@
           <div class="cosmos-orbit orbit-1" aria-hidden="true"></div>
           <div class="cosmos-orbit orbit-2" aria-hidden="true"></div>
           <div class="cosmos-orbit orbit-3" aria-hidden="true"></div>
+          <div class="cosmos-orbit orbit-4" aria-hidden="true"></div>
 
           <!-- Orbiting SEO Celestial Bodies -->
           <div class="celestial-body planet-intent" data-name="Search Intent"
@@ -362,28 +386,67 @@
             <span class="body-tag">Intent</span>
           </div>
 
+          <div class="celestial-body planet-ai" data-name="AI Overviews &amp; GEO"
+            data-desc="Generative Engine Optimization: earning citations in ChatGPT, Gemini, and Perplexity answer capsules."
+            tabindex="0">
+            <span class="body-icon">✦</span>
+            <span class="body-tag">AI Search</span>
+          </div>
+
           <div class="celestial-body planet-bot" data-name="Googlebot Explorer"
-            data-desc="Orbiting the web 24/7, traversing sitemaps and following internal links." tabindex="0">
+            data-desc="Orbiting the web 24/7, traversing sitemaps and following internal links."
+            tabindex="0">
             <span class="body-icon">🛰️</span>
             <span class="body-tag">Googlebot</span>
           </div>
 
-          <div class="celestial-body planet-vitals" data-name="Core Web Vitals"
-            data-desc="The physics of speed: smooth LCP, low CLS, and instant INP keep visitors in orbit." tabindex="0">
-            <span class="body-icon">⚡</span>
-            <span class="body-tag">Web Vitals</span>
-          </div>
-
           <div class="celestial-body planet-eeat" data-name="E-E-A-T Star"
-            data-desc="Experience, Expertise, Authoritativeness & Trust radiating through every guide." tabindex="0">
+            data-desc="Experience, Expertise, Authoritativeness &amp; Trust radiating through every guide."
+            tabindex="0">
             <span class="body-icon">☀️</span>
             <span class="body-tag">E-E-A-T</span>
           </div>
 
+          <div class="celestial-body planet-schema" data-name="Semantic Schema"
+            data-desc="Structured JSON-LD entity data translating human prose directly into machine knowledge graphs."
+            tabindex="0">
+            <span class="body-icon">🧩</span>
+            <span class="body-tag">Schema</span>
+          </div>
+
           <div class="celestial-body planet-authority" data-name="Topical Authority"
-            data-desc="Interconnected guides forming an inescapable cluster of search relevance." tabindex="0">
+            data-desc="Interconnected guides forming an inescapable cluster of search relevance."
+            tabindex="0">
             <span class="body-icon">🌌</span>
             <span class="body-tag">Authority</span>
+          </div>
+
+          <div class="celestial-body planet-links" data-name="Backlink Gravity"
+            data-desc="Inbound editorial recommendations that curve the algorithmic space-time continuum in your favor."
+            tabindex="0">
+            <span class="body-icon">🔗</span>
+            <span class="body-tag">Backlinks</span>
+          </div>
+
+          <div class="celestial-body planet-vitals" data-name="Core Web Vitals"
+            data-desc="The physics of speed: smooth LCP, low CLS, and instant INP keep visitors in orbit."
+            tabindex="0">
+            <span class="body-icon">⚡</span>
+            <span class="body-tag">Web Vitals</span>
+          </div>
+
+          <div class="celestial-body planet-console" data-name="Search Console Observatory"
+            data-desc="Deep space analytics tracking click trajectories, query impressions, and indexation health."
+            tabindex="0">
+            <span class="body-icon">📡</span>
+            <span class="body-tag">Search Console</span>
+          </div>
+
+          <div class="celestial-body planet-content" data-name="Helpful Content Pulse"
+            data-desc="Genuinely useful human answers that satisfy search intent and outlast every algorithm update."
+            tabindex="0">
+            <span class="body-icon">✍️</span>
+            <span class="body-tag">Content</span>
           </div>
 
           <!-- The Grand Galactic Core Wordmark with Liquid Flow -->

@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" width="800" height="440" role="img" aria-labelledby="svgTitle svgDesc">
+  <title id="svgTitle">Ashiq — Yoonverse Semantic SEO Architecture, Knowledge Graph Triples &amp; Organic Search Telemetry (India)</title>
+  <desc id="svgDesc">Visual semantic architecture diagram showing how Ashiq at Yoonverse (yoonverse.in, India) maps Subject-Predicate-Object semantic triples, Topical Authority clusters, and Google Search Console telemetry to earn #1 organic search rankings.</desc>
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffdf9"/>
+      <stop offset="100%" stop-color="#f4ece0"/>
+    </linearGradient>
+    <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c0532a" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#c0532a" stop-opacity="0.02"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#1d1b18" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="440" rx="20" fill="url(#bgGrad)" stroke="#e2d8c8" stroke-width="2"/>
+
+  <!-- Subtle Grid Lines -->
+  <g stroke="#e2d8c8" stroke-width="0.7" opacity="0.55">
+    <line x1="0" y1="88" x2="800" y2="88"/>
+    <line x1="0" y1="176" x2="800" y2="176"/>
+    <line x1="0" y1="264" x2="800" y2="264"/>
+    <line x1="0" y1="352" x2="800" y2="352"/>
+    <line x1="160" y1="0" x2="160" y2="440"/>
+    <line x1="320" y1="0" x2="320" y2="440"/>
+    <line x1="480" y1="0" x2="480" y2="440"/>
+    <line x1="640" y1="0" x2="640" y2="440"/>
+  </g>
+
+  <!-- Top Telemetry Header Bar -->
+  <rect x="24" y="20" width="752" height="46" rx="12" fill="#1d1b18"/>
+  <circle cx="48" cy="43" r="6" fill="#c0532a"/>
+  <circle cx="66" cy="43" r="6" fill="#e5a93c"/>
+  <circle cx="84" cy="43" r="6" fill="#4f5d3f"/>
+  <text x="110" y="48" fill="#f6f1e8" font-family="monospace" font-size="13" font-weight="600" letter-spacing="1">ENTITY: ASHIQ (YOONVERSE.IN) · REGION: INDIA (IN) · SEMANTIC GRAPH v4.0</text>
+  <rect x="650" y="30" width="112" height="26" rx="13" fill="#4f5d3f"/>
+  <text x="706" y="47" fill="#fffdf9" font-family="sans-serif" font-size="11" font-weight="700" text-anchor="middle">CWV: 99 / 100</text>
+
+  <!-- Left Card: Organic Search Telemetry & GSC Curve -->
+  <g filter="url(#cardShadow)">
+    <rect x="24" y="84" width="356" height="332" rx="16" fill="#fffdf9" stroke="#e2d8c8" stroke-width="1.5"/>
+  </g>
+  <text x="48" y="116" fill="#4f5d3f" font-family="monospace" font-size="11" font-weight="700" letter-spacing="1.5">GOOGLE SEARCH CONSOLE TELEMETRY</text>
+  <text x="48" y="152" fill="#1d1b18" font-family="Georgia, serif" font-size="30" font-weight="700">+318% Organic Clicks</text>
+  <text x="48" y="174" fill="#7d766b" font-family="sans-serif" font-size="13">Intent-matched topical clusters · Zero paid ad spend</text>
+
+  <!-- Growth Area Chart -->
+  <path d="M48,310 L95,302 L142,286 L189,292 L236,248 L283,214 L330,175 L356,148 L356,325 L48,325 Z" fill="url(#chartFill)"/>
+  <path d="M48,310 L95,302 L142,286 L189,292 L236,248 L283,214 L330,175 L356,148" fill="none" stroke="#c0532a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="236" cy="248" r="5" fill="#fffdf9" stroke="#c0532a" stroke-width="3"/>
+  <circle cx="330" cy="175" r="5" fill="#fffdf9" stroke="#c0532a" stroke-width="3"/>
+  <circle cx="356" cy="148" r="6" fill="#c0532a"/>
+
+  <!-- Bottom KPI Pills inside Left Card -->
+  <rect x="44" y="344" width="152" height="52" rx="10" fill="#f6f1e8" stroke="#e2d8c8"/>
+  <text x="58" y="365" fill="#7d766b" font-family="monospace" font-size="10" font-weight="600">SERP POSITION</text>
+  <text x="58" y="386" fill="#c0532a" font-family="Georgia, serif" font-size="19" font-weight="700">Rank #1 Snippet</text>
+
+  <rect x="208" y="344" width="152" height="52" rx="10" fill="#e3e6d6" stroke="#cfd5bb"/>
+  <text x="222" y="365" fill="#4f5d3f" font-family="monospace" font-size="10" font-weight="700">ENTITY CONFIDENCE</text>
+  <text x="222" y="386" fill="#1d1b18" font-family="Georgia, serif" font-size="19" font-weight="700">99.4% Salience</text>
+
+  <!-- Right Card: Semantic Knowledge Graph Triples (SPO / EAV) -->
+  <g filter="url(#cardShadow)">
+    <rect x="400" y="84" width="376" height="332" rx="16" fill="#fffdf9" stroke="#e2d8c8" stroke-width="1.5"/>
+  </g>
+  <text x="424" y="116" fill="#c0532a" font-family="monospace" font-size="11" font-weight="700" letter-spacing="1.5">KNOWLEDGE GRAPH · SEMANTIC TRIPLES (SPO)</text>
+  <text x="424" y="146" fill="#1d1b18" font-family="Georgia, serif" font-size="23" font-weight="700">Entity-Attribute-Value Graph</text>
+
+  <!-- Triple 1 -->
+  <rect x="424" y="168" width="102" height="44" rx="10" fill="#1d1b18"/>
+  <text x="475" y="187" fill="#f4dccf" font-family="monospace" font-size="9" text-anchor="middle">SUBJECT</text>
+  <text x="475" y="202" fill="#fffdf9" font-family="sans-serif" font-size="12" font-weight="700" text-anchor="middle">Ashiq (India)</text>
+
+  <line x1="526" y1="190" x2="544" y2="190" stroke="#c0532a" stroke-width="2"/>
+  <rect x="544" y="173" width="92" height="34" rx="17" fill="#f4dccf" stroke="#c0532a"/>
+  <text x="590" y="194" fill="#c0532a" font-family="monospace" font-size="11" font-weight="700" text-anchor="middle">architects →</text>
+  <line x1="636" y1="190" x2="652" y2="190" stroke="#c0532a" stroke-width="2"/>
+
+  <rect x="652" y="168" width="104" height="44" rx="10" fill="#e3e6d6" stroke="#4f5d3f"/>
+  <text x="704" y="187" fill="#4f5d3f" font-family="monospace" font-size="9" font-weight="700" text-anchor="middle">OBJECT</text>
+  <text x="704" y="202" fill="#1d1b18" font-family="sans-serif" font-size="12" font-weight="700" text-anchor="middle">Semantic SEO</text>
+
+  <!-- Triple 2 -->
+  <rect x="424" y="232" width="102" height="44" rx="10" fill="#1d1b18"/>
+  <text x="475" y="251" fill="#f4dccf" font-family="monospace" font-size="9" text-anchor="middle">SUBJECT</text>
+  <text x="475" y="266" fill="#fffdf9" font-family="sans-serif" font-size="12" font-weight="700" text-anchor="middle">Topic Clusters</text>
+
+  <line x1="526" y1="254" x2="544" y2="254" stroke="#4f5d3f" stroke-width="2"/>
+  <rect x="544" y="237" width="92" height="34" rx="17" fill="#e3e6d6" stroke="#4f5d3f"/>
+  <text x="590" y="258" fill="#4f5d3f" font-family="monospace" font-size="11" font-weight="700" text-anchor="middle">establish →</text>
+  <line x1="636" y1="254" x2="652" y2="254" stroke="#4f5d3f" stroke-width="2"/>
+
+  <rect x="652" y="232" width="104" height="44" rx="10" fill="#f6f1e8" stroke="#1d1b18"/>
+  <text x="704" y="251" fill="#7d766b" font-family="monospace" font-size="9" font-weight="700" text-anchor="middle">OBJECT</text>
+  <text x="704" y="266" fill="#1d1b18" font-family="sans-serif" font-size="12" font-weight="700" text-anchor="middle">Domain Authority</text>
+
+  <!-- Triple 3 -->
+  <rect x="424" y="296" width="102" height="44" rx="10" fill="#1d1b18"/>
+  <text x="475" y="315" fill="#f4dccf" font-family="monospace" font-size="9" text-anchor="middle">SUBJECT</text>
+  <text x="475" y="330" fill="#fffdf9" font-family="sans-serif" font-size="12" font-weight="700" text-anchor="middle">Visual Entities</text>
+
+  <line x1="526" y1="318" x2="544" y2="318" stroke="#c0532a" stroke-width="2"/>
+  <rect x="544" y="301" width="92" height="34" rx="17" fill="#f4dccf" stroke="#c0532a"/>
+  <text x="590" y="322" fill="#c0532a" font-family="monospace" font-size="11" font-weight="700" text-anchor="middle">validate →</text>
+  <line x1="636" y1="318" x2="652" y2="318" stroke="#c0532a" stroke-width="2"/>
+
+  <rect x="652" y="296" width="104" height="44" rx="10" fill="#e3e6d6" stroke="#4f5d3f"/>
+  <text x="704" y="315" fill="#4f5d3f" font-family="monospace" font-size="9" font-weight="700" text-anchor="middle">OBJECT</text>
+  <text x="704" y="330" fill="#1d1b18" font-family="sans-serif" font-size="12" font-weight="700" text-anchor="middle">E-E-A-T Signals</text>
+
+  <!-- Footer Strip in Right Card -->
+  <rect x="424" y="354" width="332" height="42" rx="10" fill="#f6f1e8" stroke="#e2d8c8"/>
+  <text x="590" y="380" fill="#1d1b18" font-family="monospace" font-size="11" font-weight="600" text-anchor="middle">JSON-LD @graph · Wikidata Q180711 · Q668 (India)</text>
+</svg>

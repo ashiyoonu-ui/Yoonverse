@@ -521,6 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const intentPsych = document.getElementById('intentPsychology');
   const intentPsychDesc = document.getElementById('intentPsychologyDesc');
   const intentStratTip = document.getElementById('intentStratTip');
+  const intentTriple = document.getElementById('intentTriple');
 
   const analyzeIntent = (raw) => {
     const q = (raw || '').trim().toLowerCase();
@@ -536,27 +537,30 @@ document.addEventListener('DOMContentLoaded', () => {
         formatDesc: 'Clean pricing tables, clear CTA buttons, trust badges, transparent return/refund policies.',
         psych: `"I know what I want. Show me the price, proof, and fastest checkout."`,
         psychDesc: 'Eliminate friction. Do not force them to read a 3,000-word history lesson before buying.',
-        tip: '💡 Transactional queries demand clear pricing, immediate availability, and fast mobile checkout.'
+        tip: '💡 Transactional queries demand clear pricing, immediate availability, and fast mobile checkout.',
+        triple: `[Searcher Entity] —(intends to acquire / hire)→ [${q}]`
       };
-    } else if (/\b(best|top|vs|versus|review|reviews|comparison|alternatives|recommended)\b/.test(q)) {
+    } else if (/\b(best|top|vs|versus|review|reviews|comparison|alternatives|recommended|analyst|strategist)\b/.test(q)) {
       res = {
         badge: 'Commercial Investigation (Evaluate)',
-        summary: 'The searcher intends to buy soon, but is actively comparing options, pros/cons, and features.',
-        format: 'Comparison Guide with Side-by-Side Table',
-        formatDesc: 'Objective pros & cons, "Best for X vs Best for Y" categories, and real hands-on impressions.',
-        psych: `"Help me avoid buying the wrong thing. Which option actually fits my situation?"`,
-        psychDesc: 'Honesty builds trust. Acknowledging competitor strengths makes your recommendations authoritative.',
-        tip: '💡 Use structured summary tables at the top of the post for instant skimmability.'
+        summary: 'The searcher is evaluating authority, credentials, pros/cons, and verifiable expertise before deciding.',
+        format: 'Entity-Backed Authority & Comparison Hub',
+        formatDesc: 'Verifiable E-E-A-T signals, Entity-Attribute-Value (EAV) tables, case telemetry, and transparent methodology.',
+        psych: `"Show me verifiable proof of expertise, semantic depth, and real search outcomes."`,
+        psychDesc: 'Search engines rank entities with the highest topical coverage, visual semantic proof, and Knowledge Graph salience.',
+        tip: '💡 Rank for commercial evaluation queries via entity salience, EAV triples, and above-the-fold visual proof—not keyword stuffing.',
+        triple: `[Evaluator] —(benchmarks authority of)→ [${q}]`
       };
-    } else if (/\b(near me|in [a-z]+|city|doctor|lawyer|dentist|agency|services|shop|store)\b/.test(q)) {
+    } else if (/\b(near me|in [a-z]+|india|city|doctor|lawyer|dentist|agency|services|shop|store)\b/.test(q)) {
       res = {
-        badge: 'Local Search Intent (Visit / Hire)',
-        summary: 'The searcher is looking for a geographic provider, physical store, or regional service.',
-        format: 'Local Landing Page with Google Business Map',
-        formatDesc: 'NAP consistency (Name, Address, Phone), customer testimonials, service radius, and operating hours.',
-        psych: `"I need someone reliable near my location whom I can call or visit today."`,
-        psychDesc: 'Local proximity and verifiable reviews weigh heavily here.',
-        tip: '💡 Optimize your Google Business Profile and embed localized customer reviews.'
+        badge: 'Geo-Entity & Local Search Intent',
+        summary: 'The searcher is looking for a geographic entity, regional market specialist, or local provider.',
+        format: 'Geo-Attributed Entity Page with Schema Graph',
+        formatDesc: 'Explicit Country/Region schema (workLocation, areaServed), ccTLD (.in) alignment, and regional telemetry.',
+        psych: `"I need a recognized specialist connected to my region and market context."`,
+        psychDesc: 'Google resolves geographic queries by linking Person/Organization entities to Place Wikidata IDs (e.g., Q668 India).',
+        tip: '💡 Connect Person/Organization schema to geographic Wikidata entities and regional search case studies.',
+        triple: `[Regional Searcher] —(seeks verified entity in)→ [${q}]`
       };
     } else if (/\b(login|sign in|portal|dashboard|official|website|account|app)\b/.test(q)) {
       res = {
@@ -566,7 +570,8 @@ document.addEventListener('DOMContentLoaded', () => {
         formatDesc: 'Prominent login box, password reset links, secure SSL verification.',
         psych: `"I already know where I am going. Just get me there as fast as possible."`,
         psychDesc: 'Navigational users rarely click secondary guides.',
-        tip: '💡 Make sure brand title tags and sitelinks are properly structured in Google Search Console.'
+        tip: '💡 Make sure brand title tags and sitelinks are properly structured in Google Search Console.',
+        triple: `[User] —(navigates directly to)→ [Brand Entity: ${q}]`
       };
     } else {
       res = {
@@ -576,7 +581,8 @@ document.addEventListener('DOMContentLoaded', () => {
         formatDesc: 'Structured with clear H2 headings, real examples, illustrations, and zero paywall barriers.',
         psych: `"I have a question or problem. I need an answer I can trust without being sold to."`,
         psychDesc: 'High trust sensitivity. Answer the core question in the first 2 paragraphs before diving deeper.',
-        tip: '💡 Answer the question directly in the opening section to capture Featured Snippets at #1.'
+        tip: '💡 Answer the question directly using Subject-Predicate-Object triples in the opening paragraph to capture Featured Snippets.',
+        triple: `[Learner] —(seeks extractive answer for)→ [${q}]`
       };
     }
 
@@ -587,6 +593,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (intentPsych) intentPsych.textContent = res.psych;
     if (intentPsychDesc) intentPsychDesc.textContent = res.psychDesc;
     if (intentStratTip) intentStratTip.textContent = res.tip;
+    if (intentTriple) intentTriple.textContent = res.triple;
   };
 
   if (intentInput && analyzeBtn) {
@@ -1001,7 +1008,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
 
       const fontSize = Math.min(w * 0.17, h * 0.78);
-      textCtx.font = `italic 400 ${fontSize}px "Instrument Serif", Georgia, serif`;
+      textCtx.font = `italic 400 ${fontSize}px "Fraunces", Georgia, serif`;
       textCtx.textAlign = 'center';
       textCtx.textBaseline = 'middle';
 
