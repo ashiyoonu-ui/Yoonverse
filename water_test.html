@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Water Effect Test - Yoonverse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #f6f1e8;
+      --bg-soft: #efe7da;
+      --surface: #fffdf9;
+      --ink: #1d1b18;
+      --ink-soft: #4a453e;
+      --muted: #7d766b;
+      --line: #e2d8c8;
+      --accent: #c0532a;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .dummy-content {
+      padding: 3rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    /* UNDER-FOOTER WATER ZONE */
+    .water-footer-section {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: var(--bg-soft);
+      border-top: 1px solid var(--line);
+      user-select: none;
+      padding: 3.5rem 0 2rem;
+    }
+
+    .water-container {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      cursor: crosshair;
+      overflow: hidden;
+    }
+
+    canvas#waterCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .water-hud {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      z-index: 3;
+    }
+
+    .water-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      padding: 0.35rem 0.85rem;
+      background: rgba(255, 253, 249, 0.85);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px rgba(29, 27, 24, 0.06);
+    }
+
+    .water-hint {
+      font-size: 0.76rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      background: rgba(255, 253, 249, 0.75);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+    }
+
+    .water-bottom-bar {
+      max-width: 1200px;
+      margin: 2rem auto 0;
+      padding: 0 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-top: 1px solid rgba(29, 27, 24, 0.08);
+      padding-top: 1.25rem;
+    }
+
+    .water-bottom-bar a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .water-bottom-bar a:hover {
+      color: var(--accent);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="dummy-content">
+    <h2>Page Content Above Footer</h2>
+    <p>The interactive water pool sits under the footer. Hover and move your pointer across the typography to stir fluid
+      water ripples and liquid refraction.</p>
+  </div>
+
+  <!-- WATER UNDER-FOOTER -->
+  <section class="water-footer-section" id="waterFooter" aria-label="Liquid Yoonverse Under-Footer">
+    <div class="water-container" id="waterContainer">
+      <canvas id="waterCanvas"></canvas>
+      <div class="water-hud">
+        <span class="water-badge">✦ Liquid Yoonverse ✦</span>
+        <span class="water-hint">Hover pointer to ripple · Click to splash</span>
+      </div>
+    </div>
+    <div class="water-bottom-bar">
+      <span>YOONVERSE · FREE SEO EDUCATION</span>
+      <span>GENUINE HELP IS THE GRAVITY</span>
+      <a href="#top" id="backToTop">BACK TO TOP ↑</a>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      const container = document.getElementById('waterContainer');
+      const canvas = document.getElementById('waterCanvas');
+      const gl = canvas.getContext('webgl', { alpha: false, depth: false, antialias: true }) ||
+        canvas.getContext('experimental-webgl', { alpha: false, depth: false });
+
+      if (!gl) {
+        console.warn('WebGL not supported');
+        return;
+      }
+
+      // Simulation resolution for the wave equation heightmap
+      const SIM_WIDTH = 256;
+      const SIM_HEIGHT = 160;
+
+      // Offscreen canvas to render the high-res typography texture
+      const textCanvas = document.createElement('canvas');
+      const textCtx = textCanvas.getContext('2d');
+
+      function renderTextTexture(width, height) {
+        textCanvas.width = width;
+        textCanvas.height = height;
+
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+        // Background gradient matching warm beige editorial style
+        const bgGrad = textCtx.createRadialGradient(width * 0.5, height * 0.5, 20, width * 0.5, height * 0.5, width * 0.65);
+        if (isDark) {
+          bgGrad.addColorStop(0, '#1c1a17');
+          bgGrad.addColorStop(0.7, '#141311');
+          bgGrad.addColorStop(1, '#0e0d0c');
+        } else {
+          bgGrad.addColorStop(0, '#fefbf6');
+          bgGrad.addColorStop(0.65, '#f4ece0');
+          bgGrad.addColorStop(1, '#e8dcce');
+        }
+        textCtx.fillStyle = bgGrad;
+        textCtx.fillRect(0, 0, width, height);
+
+        // Subtle water caustics / orbital rings in background
+        textCtx.strokeStyle = isDark ? 'rgba(226, 109, 66, 0.08)' : 'rgba(192, 83, 42, 0.06)';
+        textCtx.lineWidth = 1.5;
+        for (let r = 80; r < width * 0.75; r += 75) {
+          textCtx.beginPath();
+          textCtx.ellipse(width * 0.5, height * 0.54, r, r * 0.32, 0, 0, Math.PI * 2);
+          textCtx.stroke();
+        }
+
+        // Grand Monumental Typography "yoonverse"
+        const text = 'yoonverse';
+        const fontSize = Math.min(width * 0.175, height * 0.85);
+
+        // Use Instrument Serif / Playfair / Georgia
+        textCtx.font = `italic 400 ${fontSize}px "Instrument Serif", Georgia, serif`;
+        textCtx.textAlign = 'center';
+        textCtx.textBaseline = 'middle';
+
+        // Ambient water reflection shadow
+        textCtx.fillStyle = isDark ? 'rgba(0,0,0,0.45)' : 'rgba(29, 27, 24, 0.05)';
+        textCtx.fillText(text, width * 0.5, height * 0.54 + 6);
+
+        // Main Ink Typography
+        textCtx.fillStyle = isDark ? '#f5eee3' : '#1d1b18';
+        textCtx.fillText(text, width * 0.5, height * 0.54);
+
+        // Small eyebrow tag
+        textCtx.font = `600 ${Math.max(11, fontSize * 0.075)}px 'Inter', system-ui, sans-serif`;
+        textCtx.fillStyle = isDark ? '#e26d42' : '#c0532a';
+        textCtx.letterSpacing = '0.22em';
+        textCtx.fillText('THE SEO UNIVERSE', width * 0.5, height * 0.54 - fontSize * 0.56);
+      }
+
+      function createShader(gl, type, source) {
+        const s = gl.createShader(type);
+        gl.shaderSource(s, source);
+        gl.compileShader(s);
+        if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+          console.error(gl.getShaderInfoLog(s));
+          gl.deleteShader(s);
+          return null;
+        }
+        return s;
+      }
+
+      function createProgram(gl, vsSrc, fsSrc) {
+        const vs = createShader(gl, gl.VERTEX_SHADER, vsSrc);
+        const fs = createShader(gl, gl.FRAGMENT_SHADER, fsSrc);
+        const p = gl.createProgram();
+        gl.attachShader(p, vs);
+        gl.attachShader(p, fs);
+        gl.linkProgram(p);
+        if (!gl.getProgramParameter(p, gl.LINK_STATUS)) {
+          console.error(gl.getProgramInfoLog(p));
+          return null;
+        }
+        return p;
+      }
+
+      // VERTEX SHADER - Correct orientation (top-left is UV 0,0 for standard canvas coordinates)
+      const baseVS = `
+    attribute vec2 a_pos;
+    varying vec2 v_uv;
+    void main() {
+      v_uv = (a_pos + 1.0) * 0.5;
+      gl_Position = vec4(a_pos, 0.0, 1.0);
+    }
+  `;
+
+      // WAVE PROPAGATION SHADER
+      const waveFS = `
+    precision highp float;
+    uniform sampler2D u_curr;
+    uniform sampler2D u_prev;
+    uniform vec2 u_texel;
+    uniform float u_damping;
+    uniform vec2 u_drop;
+    uniform float u_dropRadius;
+    uniform float u_dropStrength;
+    varying vec2 v_uv;
+
+    void main() {
+      // 4-tap laplacian
+      float n = texture2D(u_curr, v_uv + vec2(0.0, u_texel.y)).r;
+      float s = texture2D(u_curr, v_uv - vec2(0.0, u_texel.y)).r;
+      float e = texture2D(u_curr, v_uv + vec2(u_texel.x, 0.0)).r;
+      float w = texture2D(u_curr, v_uv - vec2(u_texel.x, 0.0)).r;
+
+      float curr = texture2D(u_curr, v_uv).r;
+      float prev = texture2D(u_prev, v_uv).r;
+
+      // Wave equation: new = 0.5 * sum - prev
+      float next = (n + s + e + w) * 0.5 - prev;
+      next *= u_damping;
+
+      // Add mouse ripple drop
+      if (u_dropStrength > 0.001) {
+        float d = distance(v_uv, u_drop);
+        if (d < u_dropRadius) {
+          float factor = 1.0 - smoothstep(0.0, u_dropRadius, d);
+          next += factor * u_dropStrength;
+        }
+      }
+
+      gl_FragColor = vec4(next, 0.0, 0.0, 1.0);
+    }
+  `;
+
+      // WATER REFRACTION & SPECULAR SHADER
+      const renderFS = `
+    precision highp float;
+    uniform sampler2D u_height;
+    uniform sampler2D u_texture;
+    uniform vec2 u_texel;
+    uniform float u_refraction;
+    uniform float u_specular;
+    varying vec2 v_uv;
+
+    void main() {
+      // Calculate surface normal
+      float hL = texture2D(u_height, v_uv - vec2(u_texel.x, 0.0)).r;
+      float hR = texture2D(u_height, v_uv + vec2(u_texel.x, 0.0)).r;
+      float hD = texture2D(u_height, v_uv - vec2(0.0, u_texel.y)).r;
+      float hU = texture2D(u_height, v_uv + vec2(0.0, u_texel.y)).r;
+
+      vec2 normal = vec2(hR - hL, hU - hD);
+
+      // Chromatic dispersion (dispersion index)
+      vec2 uvR = v_uv + normal * (u_refraction * 1.08);
+      vec2 uvG = v_uv + normal * u_refraction;
+      vec2 uvB = v_uv + normal * (u_refraction * 0.92);
+
+      uvR = clamp(uvR, 0.001, 0.999);
+      uvG = clamp(uvG, 0.001, 0.999);
+      uvB = clamp(uvB, 0.001, 0.999);
+
+      vec4 texR = texture2D(u_texture, uvR);
+      vec4 texG = texture2D(u_texture, uvG);
+      vec4 texB = texture2D(u_texture, uvB);
+
+      vec3 color = vec3(texR.r, texG.g, texB.b);
+
+      // Surface normal in 3D
+      vec3 lightDir = normalize(vec3(-0.35, 0.65, 0.68));
+      vec3 surfNorm = normalize(vec3(normal * 14.0, 1.0));
+
+      // Specular water glint
+      vec3 viewDir = vec3(0.0, 0.0, 1.0);
+      vec3 halfDir = normalize(lightDir + viewDir);
+      float spec = pow(max(dot(surfNorm, halfDir), 0.0), 32.0) * u_specular;
+
+      color += vec3(0.97, 0.98, 1.0) * spec;
+
+      // Soft water caustic sheen
+      float waveAmp = abs(texture2D(u_height, v_uv).r);
+      color = mix(color, color * 1.06 + vec3(0.02, 0.04, 0.05), clamp(waveAmp * 0.9, 0.0, 0.16));
+
+      gl_FragColor = vec4(color, 1.0);
+    }
+  `;
+
+      const extFloat = gl.getExtension('OES_texture_float') || gl.getExtension('OES_texture_half_float');
+      const texType = extFloat ? gl.FLOAT : gl.UNSIGNED_BYTE;
+
+      const quadBuf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, quadBuf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+        -1, -1,
+        1, -1,
+        -1, 1,
+        -1, 1,
+        1, -1,
+        1, 1
+      ]), gl.STATIC_DRAW);
+
+      function createFBO(w, h) {
+        const tex = gl.createTexture();
+        gl.bindTexture(gl.TEXTURE_2D, tex);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, w, h, 0, gl.RGBA, texType, null);
+
+        const fbo = gl.createFramebuffer();
+        gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+        gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+
+        return { fbo, tex, width: w, height: h };
+      }
+
+      let fboCurr = createFBO(SIM_WIDTH, SIM_HEIGHT);
+      let fboPrev = createFBO(SIM_WIDTH, SIM_HEIGHT);
+      let fboNext = createFBO(SIM_WIDTH, SIM_HEIGHT);
+
+      const textTex = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D, textTex);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+
+      const waveProg = createProgram(gl, baseVS, waveFS);
+      const renderProg = createProgram(gl, baseVS, renderFS);
+
+      const waveUniforms = {
+        curr: gl.getUniformLocation(waveProg, 'u_curr'),
+        prev: gl.getUniformLocation(waveProg, 'u_prev'),
+        texel: gl.getUniformLocation(waveProg, 'u_texel'),
+        damping: gl.getUniformLocation(waveProg, 'u_damping'),
+        drop: gl.getUniformLocation(waveProg, 'u_drop'),
+        dropRadius: gl.getUniformLocation(waveProg, 'u_dropRadius'),
+        dropStrength: gl.getUniformLocation(waveProg, 'u_dropStrength')
+      };
+
+      const renderUniforms = {
+        height: gl.getUniformLocation(renderProg, 'u_height'),
+        texture: gl.getUniformLocation(renderProg, 'u_texture'),
+        texel: gl.getUniformLocation(renderProg, 'u_texel'),
+        refraction: gl.getUniformLocation(renderProg, 'u_refraction'),
+        specular: gl.getUniformLocation(renderProg, 'u_specular')
+      };
+
+      const pointer = {
+        x: -1,
+        y: -1,
+        lastX: -1,
+        lastY: -1,
+        active: false
+      };
+
+      const pendingDrops = [];
+
+      function addDrop(normX, normY, radius = 0.045, strength = 0.3) {
+        pendingDrops.push({ x: normX, y: normY, radius, strength });
+      }
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const rect = container.getBoundingClientRect();
+        const width = Math.floor(rect.width * dpr);
+        const height = Math.floor(rect.height * dpr);
+
+        if (canvas.width !== width || canvas.height !== height) {
+          canvas.width = width;
+          canvas.height = height;
+
+          renderTextTexture(width, height);
+          gl.bindTexture(gl.TEXTURE_2D, textTex);
+          // Flip Y on upload so canvas coordinate (0,0) matches WebGL UV (0,0)
+          gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, textCanvas);
+        }
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+
+      // Pointer event tracking
+      function handlePointer(clientX, clientY, isDown = false) {
+        const rect = container.getBoundingClientRect();
+        const x = (clientX - rect.left) / rect.width;
+        // In WebGL UV space, 0 is bottom and 1 is top
+        const y = 1.0 - (clientY - rect.top) / rect.height;
+
+        if (x < 0 || x > 1 || y < 0 || y > 1) {
+          pointer.active = false;
+          return;
+        }
+
+        if (!pointer.active) {
+          pointer.lastX = x;
+          pointer.lastY = y;
+          pointer.active = true;
+          addDrop(x, y, 0.045, isDown ? 0.45 : 0.22);
+        } else {
+          const dx = x - pointer.lastX;
+          const dy = y - pointer.lastY;
+          const speed = Math.sqrt(dx * dx + dy * dy);
+
+          if (speed > 0.003) {
+            const steps = Math.min(Math.ceil(speed / 0.012), 4);
+            for (let i = 1; i <= steps; i++) {
+              const t = i / steps;
+              const px = pointer.lastX + dx * t;
+              const py = pointer.lastY + dy * t;
+              const radius = Math.min(0.065, 0.035 + speed * 0.35);
+              const strength = Math.min(0.4, 0.14 + speed * 1.6);
+              addDrop(px, py, radius, strength);
+            }
+            pointer.lastX = x;
+            pointer.lastY = y;
+          }
+        }
+      }
+
+      container.addEventListener('pointerenter', (e) => {
+        handlePointer(e.clientX, e.clientY);
+      });
+
+      container.addEventListener('pointermove', (e) => {
+        handlePointer(e.clientX, e.clientY, e.buttons > 0);
+      });
+
+      container.addEventListener('pointerleave', () => {
+        pointer.active = false;
+      });
+
+      container.addEventListener('pointerdown', (e) => {
+        const rect = container.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = 1.0 - (e.clientY - rect.top) / rect.height;
+        addDrop(x, y, 0.075, 0.55);
+      });
+
+      // Ambient gentle ripple
+      let lastAmbient = 0;
+      function triggerAmbient(now) {
+        if (now - lastAmbient > 2800) {
+          lastAmbient = now;
+          const rx = 0.2 + Math.random() * 0.6;
+          const ry = 0.3 + Math.random() * 0.4;
+          addDrop(rx, ry, 0.035, 0.15);
+        }
+      }
+
+      function animate(now) {
+        requestAnimationFrame(animate);
+
+        triggerAmbient(now);
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, quadBuf);
+        gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+        gl.enableVertexAttribArray(0);
+
+        const drops = pendingDrops.splice(0, 3);
+
+        if (drops.length > 0) {
+          for (const drop of drops) {
+            gl.bindFramebuffer(gl.FRAMEBUFFER, fboNext.fbo);
+            gl.viewport(0, 0, SIM_WIDTH, SIM_HEIGHT);
+            gl.useProgram(waveProg);
+
+            gl.activeTexture(gl.TEXTURE0);
+            gl.bindTexture(gl.TEXTURE_2D, fboCurr.tex);
+            gl.uniform1i(waveUniforms.curr, 0);
+
+            gl.activeTexture(gl.TEXTURE1);
+            gl.bindTexture(gl.TEXTURE_2D, fboPrev.tex);
+            gl.uniform1i(waveUniforms.prev, 1);
+
+            gl.uniform2f(waveUniforms.texel, 1.0 / SIM_WIDTH, 1.0 / SIM_HEIGHT);
+            gl.uniform1f(waveUniforms.damping, 0.982);
+
+            gl.uniform2f(waveUniforms.drop, drop.x, drop.y);
+            gl.uniform1f(waveUniforms.dropRadius, drop.radius);
+            gl.uniform1f(waveUniforms.dropStrength, drop.strength);
+
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+            const tmp = fboPrev;
+            fboPrev = fboCurr;
+            fboCurr = fboNext;
+            fboNext = tmp;
+          }
+        } else {
+          gl.bindFramebuffer(gl.FRAMEBUFFER, fboNext.fbo);
+          gl.viewport(0, 0, SIM_WIDTH, SIM_HEIGHT);
+          gl.useProgram(waveProg);
+
+          gl.activeTexture(gl.TEXTURE0);
+          gl.bindTexture(gl.TEXTURE_2D, fboCurr.tex);
+          gl.uniform1i(waveUniforms.curr, 0);
+
+          gl.activeTexture(gl.TEXTURE1);
+          gl.bindTexture(gl.TEXTURE_2D, fboPrev.tex);
+          gl.uniform1i(waveUniforms.prev, 1);
+
+          gl.uniform2f(waveUniforms.texel, 1.0 / SIM_WIDTH, 1.0 / SIM_HEIGHT);
+          gl.uniform1f(waveUniforms.damping, 0.982);
+
+          gl.uniform2f(waveUniforms.drop, -1.0, -1.0);
+          gl.uniform1f(waveUniforms.dropRadius, 0.0);
+          gl.uniform1f(waveUniforms.dropStrength, 0.0);
+
+          gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+          const tmp = fboPrev;
+          fboPrev = fboCurr;
+          fboCurr = fboNext;
+          fboNext = tmp;
+        }
+
+        // Render pass
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        gl.useProgram(renderProg);
+
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, fboCurr.tex);
+        gl.uniform1i(renderUniforms.height, 0);
+
+        gl.activeTexture(gl.TEXTURE1);
+        gl.bindTexture(gl.TEXTURE_2D, textTex);
+        gl.uniform1i(renderUniforms.texture, 1);
+
+        gl.uniform2f(renderUniforms.texel, 1.0 / SIM_WIDTH, 1.0 / SIM_HEIGHT);
+        gl.uniform1f(renderUniforms.refraction, 0.042);
+        gl.uniform1f(renderUniforms.specular, 0.6);
+
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+      }
+
+      requestAnimationFrame(animate);
+
+      setTimeout(() => {
+        addDrop(0.5, 0.5, 0.065, 0.35);
+      }, 350);
+
+      // Smooth scroll back to top
+      const backToTopBtn = document.getElementById('backToTop');
+      if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+    })();
+  </script>
+</body>
+
+</html>

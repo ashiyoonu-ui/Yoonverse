@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Track AI Traffic in GA4 Using Free Form Exploration | Yoonverse</title>
+  <meta name="description"
+    content="Learn how to track referral traffic from ChatGPT, Gemini, Perplexity, Claude, and other AI platforms in Google Analytics 4 using Free form exploration and a regex filter.">
+  <link rel="canonical" href="https://yoonverse.in/blog/how-to-track-ai-traffic-in-ga4">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#f6f1e8">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Yoonverse">
+  <meta property="og:title" content="How to Track AI Traffic in GA4 Using Free Form Exploration | Yoonverse">
+  <meta property="og:description"
+    content="Learn how to track referral traffic from ChatGPT, Gemini, Perplexity, Claude, and other AI platforms in Google Analytics 4 using Free form exploration and a regex filter.">
+  <meta property="og:url" content="https://yoonverse.in/blog/how-to-track-ai-traffic-in-ga4">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:image" content="https://yoonverse.in/yoonverse.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/style.css?v=3.0">
+  <script>(function () { try { const t = localStorage.getItem('yoonverse_theme'); if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme:dark)').matches)) { document.documentElement.setAttribute('data-theme', 'dark'); } } catch (e) { } })();</script>
+  <script
+    type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"How to Track AI Traffic in GA4 Using Free Form Exploration","description":"Learn how to track referral traffic from ChatGPT, Gemini, Perplexity, Claude, and other AI platforms in Google Analytics 4 using Free form exploration and a regex filter.","datePublished":"2026-10-18","dateModified":"2026-10-18","mainEntityOfPage":"https://yoonverse.in/blog/how-to-track-ai-traffic-in-ga4","author":{"@type":"Person","name":"Yoonverse"},"publisher":{"@type":"Organization","name":"Yoonverse","url":"https://yoonverse.in"}}</script>
+</head>
+
+<body>
+  <div class="progress"></div>
+  <header class="site-header">
+    <nav class="container nav" aria-label="Main">
+      <a href="/" class="logo" id="logo"><img src="/yoonverse.webp" alt="Yoonverse" class="logo-img" width="38"
+          height="38"
+          style="width:38px;height:38px;max-width:38px;max-height:38px;border-radius:50%;object-fit:cover;display:inline-block;vertical-align:middle;border:1px solid var(--line);box-shadow:0 2px 6px rgba(29,27,24,.08);">Yoonverse</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li class="mobile-cta-item"><a href="/blog/" class="mobile-menu-cta">Start learning →</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode" title="Toggle theme"><span
+            class="theme-icon">🌙</span></button>
+        <a href="/blog/" class="btn btn-dark btn-sm" id="nav-cta">Start learning <span class="arrow">→</span></a>
+        <button class="menu-btn" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <article>
+      <header class="article-head container">
+        <a href="/blog/" class="back-link">← All articles</a>
+        <h1 class="reveal">How to Track AI Traffic in GA4 Using Free Form Exploration</h1>
+        <div class="post-meta reveal d1"><span class="tag">Analytics</span><span>18 Oct
+            2026</span><span>·</span><span>6 min read</span></div>
+      </header>
+      <div class="container">
+        <div class="post-thumb t4" style="max-width:960px;margin:0 auto 3.5rem;aspect-ratio:21/9"><span
+            class="glyph">AI</span></div>
+      </div>
+      <div class="container">
+        <div class="article-body prose">
+          <div class="toc"><strong>In this guide</strong>
+            <ol>
+              <li><a href="#step-1">Step 1: Open Free Form Exploration</a></li>
+              <li><a href="#step-2">Step 2: Add Dimensions</a></li>
+              <li><a href="#step-3">Step 3: Add Metrics</a></li>
+              <li><a href="#step-4">Step 4: Configure the Rows</a></li>
+              <li><a href="#step-5">Step 5: Configure Values</a></li>
+              <li><a href="#step-6">Step 6: Add the AI Traffic Filter</a></li>
+              <li><a href="#regex-breakdown">What does this regex cover?</a></li>
+              <li><a href="#step-7">Step 7: Review Your AI Traffic Report</a></li>
+              <li><a href="#step-8">Step 8: Select Your Date Range</a></li>
+              <li><a href="#conclusion">Conclusion & Next Steps</a></li>
+            </ol>
+          </div>
+
+          <p>Want to see how much traffic your website receives from ChatGPT, Gemini, Perplexity, and other AI platforms?</p>
+          <p>You can set up a custom report in <strong>Google Analytics 4 (GA4)</strong> using Free form exploration and a regex filter. This lets you identify AI-related traffic sources and see which pages receive visits from them.</p>
+          <p>Here's how to set it up step by step.</p>
+
+          <h2 id="step-1">Step 1: Open Free Form Exploration</h2>
+          <ol>
+            <li>Open your <strong>Google Analytics 4 property</strong>.</li>
+            <li>Click <strong>Explore</strong> in the left-hand navigation.</li>
+            <li>Select <strong>Free form</strong>.</li>
+            <li>Name your exploration <code>LLMS Visibility</code> or <code>AI Traffic Visibility</code>.</li>
+          </ol>
+          <p>You'll now see the <em>Variables</em> and <em>Settings</em> panels side-by-side.</p>
+
+          <h2 id="step-2">Step 2: Add Dimensions</h2>
+          <p>Under <strong>Variables → Dimensions</strong>, click the <strong>+</strong> icon and import these two dimensions:</p>
+          <ul>
+            <li><code>Session source / medium</code></li>
+            <li><code>Page path + query string</code></li>
+          </ul>
+          <p>These dimensions let you identify traffic sources and the page paths associated with them.</p>
+
+          <h2 id="step-3">Step 3: Add Metrics</h2>
+          <p>Under <strong>Variables → Metrics</strong>, click the <strong>+</strong> icon and import:</p>
+          <ul>
+            <li><code>Entrances</code> — counts how often a page was the first page of a session.</li>
+            <li><code>Views</code> — counts page views, including repeat views.</li>
+          </ul>
+
+          <h2 id="step-4">Step 4: Configure the Rows</h2>
+          <p>In the <strong>Settings</strong> panel, configure the Rows section as follows:</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Setting</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>First row dimension</strong></td>
+                  <td><code>Session source / medium</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Second row dimension</strong></td>
+                  <td><code>Page path + query string</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Nested rows</strong></td>
+                  <td>Yes</td>
+                </tr>
+                <tr>
+                  <td><strong>Show rows</strong></td>
+                  <td>250</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>This groups page paths neatly under their corresponding traffic sources.</p>
+
+          <h2 id="step-5">Step 5: Configure Values</h2>
+          <p>Scroll down to the <strong>Values</strong> section and drag or add:</p>
+          <ul>
+            <li><code>Entrances</code></li>
+            <li><code>Views</code></li>
+          </ul>
+          <p>Under <strong>Cell type</strong>, select <strong>Bar chart</strong> to display visual bars alongside the values.</p>
+          <p>Your report structure is now ready. Next, we'll filter it to show AI-related traffic.</p>
+
+          <h2 id="step-6">Step 6: Add the AI Traffic Filter</h2>
+          <p>Scroll down to <strong>Filters</strong> in the Settings panel and configure the filter as follows:</p>
+          <ul>
+            <li><strong>Dimension:</strong> <code>Session source / medium</code></li>
+            <li><strong>Condition:</strong> <code>matches regex</code></li>
+            <li><strong>Value:</strong> Copy and paste the expression below.</li>
+          </ul>
+
+          <div class="code-box">
+            <div class="code-header">
+              <span>Regex Filter for AI Referrals</span>
+              <button class="code-copy-btn" type="button" data-copy="ai-regex-code" aria-label="Copy regex to clipboard">📋 Copy Regex</button>
+            </div>
+            <pre><code id="ai-regex-code">.*chatgpt.*|.*openai.*|.*neeva.*|.*writesonic.*|.*nimble.*|.*outrider.*|.*perplexity.*|.*edgeservices.*|.*gemini.*google.*|.*copilot.*|.*claude.*|.*mistral.*|.*meta.*|.*jasper.*|.*deepmind.*|.*copy.*ai.*</code></pre>
+          </div>
+
+          <p>Click <strong>Apply</strong>.</p>
+          <p>That's it! GA4 will now display source/medium values matching at least one of the patterns in the regex.</p>
+
+          <h3 id="regex-breakdown">What does this regex cover?</h3>
+          <p>The expression matches source/medium values containing patterns associated with AI platforms and services, including:</p>
+          <ul>
+            <li>ChatGPT and OpenAI</li>
+            <li>Perplexity</li>
+            <li>Gemini</li>
+            <li>Microsoft Copilot</li>
+            <li>Claude</li>
+            <li>Mistral</li>
+            <li>Jasper and Copy.ai</li>
+            <li>Other leading AI crawlers and referral surfaces</li>
+          </ul>
+
+          <div class="callout">
+            ⚠️ <strong>Starter filter note:</strong> This is a starter filter, not an exhaustive list of all AI platforms. Some patterns, such as <code>.*meta.*</code> and <code>.*openai.*</code>, can match unrelated sources. Review your actual GA4 source/medium values and refine the expression as your data grows.
+          </div>
+
+          <h2 id="step-7">Step 7: Review Your AI Traffic Report</h2>
+          <p>Once you apply the filter, your table will show matching source/medium values, page paths, entrances, and views.</p>
+          <p>For example, you might see:</p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Session source / medium</th>
+                  <th>Page path</th>
+                  <th>Entrances</th>
+                  <th>Views</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>gemini.google.com / referral</code></td>
+                  <td><code>/</code></td>
+                  <td>8</td>
+                  <td>10</td>
+                </tr>
+                <tr>
+                  <td><code>gemini.google.com / referral</code></td>
+                  <td><code>/openedx-ai-plugin</code></td>
+                  <td>2</td>
+                  <td>3</td>
+                </tr>
+                <tr>
+                  <td><code>perplexity / (not set)</code></td>
+                  <td><code>/blog/ai-skill-gap-analysis</code></td>
+                  <td>2</td>
+                  <td>3</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p><em>These are illustrative examples. Your actual results will depend on the data collected by your GA4 property.</em></p>
+
+          <div class="callout">
+            💡 <strong>Metric nuance:</strong> <code>Page path + query string</code> includes all pages viewed during matching sessions, not just initial landing pages. The <strong>Entrances</strong> metric helps you identify the specific page where sessions actually began.
+          </div>
+
+          <h2 id="step-8">Step 8: Select Your Date Range</h2>
+          <p>In the Variables panel, click the date range and choose the period you want to analyze:</p>
+          <ul>
+            <li><strong>Last 28 days:</strong> For recent AI traffic and immediate spikes.</li>
+            <li><strong>Last 3 months:</strong> For short-term trends and post-update shifts.</li>
+            <li><strong>Last 12 months:</strong> For a broader overview of LLM citation growth over time.</li>
+          </ul>
+          <p>Your report is now ready to help you monitor traffic attributed to AI-related sources.</p>
+
+          <h2 id="conclusion">Conclusion</h2>
+          <p>With a few dimensions, two metrics, and a regex filter, you can create a custom GA4 Free form exploration to track AI-related referral traffic.</p>
+          <p>Save the exploration so you can return to it whenever you want to check which sources and pages are appearing in your AI traffic report.</p>
+
+          <blockquote>As AI search engines and answer bots reshape how users discover information, measuring where AI referral traffic lands is the first step toward optimizing for LLM visibility.</blockquote>
+
+          <p>Official reference: <a href="https://support.google.com/analytics/answer/9327972" target="_blank" rel="noopener">Google Analytics 4 Explorations Guide</a>.</p>
+        </div>
+      </div>
+    </article>
+
+    <section class="section" style="padding-top:2rem">
+      <div class="container">
+        <div class="section-head">
+          <h2>Keep learning</h2>
+        </div>
+        <div class="posts">
+          <a href="/blog/how-google-search-works" class="post-card reveal d1" data-cat="basics">
+            <div class="post-thumb t1"><span class="glyph">G</span></div>
+            <div class="post-meta"><span class="tag">SEO Basics</span><span>7 min read</span></div>
+            <h3>How Google Search Actually Works (Explained Simply)</h3>
+            <p>Crawling, indexing and ranking explained in plain language, so you understand what SEO is really about
+              before you touch a single tool.</p>
+          </a>
+          <a href="/blog/keyword-research-for-beginners" class="post-card reveal d2" data-cat="content">
+            <div class="post-thumb t2"><span class="glyph">K</span></div>
+            <div class="post-meta"><span class="tag">Content</span><span>9 min read</span></div>
+            <h3>Keyword Research for Beginners Using Only Free Tools</h3>
+            <p>A step-by-step process to find topics people actually search for, without paying for expensive SEO
+              software.</p>
+          </a>
+          <a href="/blog/technical-seo-checklist" class="post-card reveal d3" data-cat="technical">
+            <div class="post-thumb t3"><span class="glyph">⚙</span></div>
+            <div class="post-meta"><span class="tag">Technical SEO</span><span>8 min read</span></div>
+            <h3>The Beginner-Friendly Technical SEO Checklist</h3>
+            <p>Ten technical checks that stop good content from being held back, explained without jargon.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta reveal">
+          <span class="eyebrow">Free SEO notes</span>
+          <h2>Learn SEO the <em class="accent">clear</em> way, one email at a time.</h2>
+          <p>Practical tips, real examples and new guides. Free forever. Unsubscribe any time.</p>
+          <form class="subscribe" data-mailto="hello@yoonverse.in" id="subscribe-form">
+            <input type="hidden" name="subject" value="Subscribe me to Yoonverse SEO notes">
+            <input type="email" name="email" placeholder="you@email.com" required aria-label="Email address"
+              id="subscribe-email">
+            <button class="btn btn-dark" type="submit" id="subscribe-btn">Subscribe <span
+                class="arrow">→</span></button>
+          </form>
+          <div class="form-msg"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="/" class="logo"><img src="/yoonverse.webp" alt="Yoonverse" class="logo-img" width="38" height="38"
+              style="width:38px;height:38px;max-width:38px;max-height:38px;border-radius:50%;object-fit:cover;display:inline-block;vertical-align:middle;border:1px solid var(--line);box-shadow:0 2px 6px rgba(29,27,24,.08);">Yoonverse</a>
+          <p>Free, honest SEO education from an SEO strategist. No paid courses, no gatekeeping.</p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Learn</h4>
+          <ul>
+            <li><a href="/blog/how-google-search-works">SEO Basics</a></li>
+            <li><a href="/blog/keyword-research-for-beginners">Content</a></li>
+            <li><a href="/blog/technical-seo-checklist">Technical SEO</a></li>
+            <li><a href="/blog/how-to-track-ai-traffic-in-ga4">GA4 AI Traffic</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="mailto:hello@yoonverse.in">Email</a></li>
+            <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://x.com/" target="_blank" rel="noopener">X / Twitter</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- THE SEO COSMOS (UNIVERSE OF SEO) -->
+      <div class="seo-cosmos-zone" id="seoCosmos">
+        <div class="cosmos-header">
+          <span class="cosmos-badge">✦ The SEO Cosmos ✦</span>
+          <h3 class="cosmos-title">Welcome to the Yoonverse</h3>
+          <p class="cosmos-caption">Where every search query is a star, and genuine human helpfulness is the gravity.
+          </p>
+        </div>
+
+        <div class="cosmos-stage">
+          <!-- Interactive Canvas for stars, constellation web, and comets -->
+          <canvas class="cosmos-canvas" id="cosmosCanvas"></canvas>
+
+          <!-- Orbital Ring Tracks -->
+          <div class="cosmos-orbit orbit-1" aria-hidden="true"></div>
+          <div class="cosmos-orbit orbit-2" aria-hidden="true"></div>
+          <div class="cosmos-orbit orbit-3" aria-hidden="true"></div>
+
+          <!-- Orbiting SEO Celestial Bodies -->
+          <div class="celestial-body planet-intent" data-name="Search Intent"
+            data-desc="The gravitational core of modern SEO. Search engines reward whatever answers the human question best."
+            tabindex="0">
+            <span class="body-icon">🪐</span>
+            <span class="body-tag">Intent</span>
+          </div>
+
+          <div class="celestial-body planet-bot" data-name="Googlebot Explorer"
+            data-desc="Orbiting the web 24/7, traversing sitemaps and following internal links." tabindex="0">
+            <span class="body-icon">🛰️</span>
+            <span class="body-tag">Googlebot</span>
+          </div>
+
+          <div class="celestial-body planet-vitals" data-name="Core Web Vitals"
+            data-desc="The physics of speed: smooth LCP, low CLS, and instant INP keep visitors in orbit." tabindex="0">
+            <span class="body-icon">⚡</span>
+            <span class="body-tag">Web Vitals</span>
+          </div>
+
+          <div class="celestial-body planet-eeat" data-name="E-E-A-T Star"
+            data-desc="Experience, Expertise, Authoritativeness & Trust radiating through every guide." tabindex="0">
+            <span class="body-icon">☀️</span>
+            <span class="body-tag">E-E-A-T</span>
+          </div>
+
+          <div class="celestial-body planet-authority" data-name="Topical Authority"
+            data-desc="Interconnected guides forming an inescapable cluster of search relevance." tabindex="0">
+            <span class="body-icon">🌌</span>
+            <span class="body-tag">Authority</span>
+          </div>
+
+          <!-- The Grand Galactic Core Wordmark with Liquid Flow -->
+          <div class="big-word-cosmic" id="cosmicWord">
+            <canvas class="liquid-word-canvas" id="liquidWordCanvas"></canvas>
+            <span class="cosmic-char">y</span><span class="cosmic-char">o</span><span class="cosmic-char">o</span><span
+              class="cosmic-char">n</span><span class="cosmic-char">v</span><span class="cosmic-char">e</span><span
+              class="cosmic-char">r</span><span class="cosmic-char">s</span><span class="cosmic-char">e</span>
+          </div>
+
+          <!-- Celestial Tooltip -->
+          <div class="cosmos-tooltip" id="cosmosTooltip" aria-hidden="true">
+            <span class="tooltip-chip">Cosmic SEO Entity</span>
+            <strong class="tooltip-title">Search Intent</strong>
+            <p class="tooltip-desc">The gravitational center of modern SEO.</p>
+          </div>
+        </div>
+
+        <div class="cosmos-footer-bar">
+          <span class="cosmos-hint"><span class="hint-sparkle">✨</span> Tap any celestial body to inspect · Move cursor
+            to draw constellation lines · Click to launch a crawl comet</span>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© <span data-year>2026</span> Yoonverse · yoonverse.in</span><span>Made for
+          learners, hosted on Cloudflare</span></div>
+    </div>
+  </footer>
+  <script src="/script.js?v=3.0" defer></script>
+</body>
+
+</html>
