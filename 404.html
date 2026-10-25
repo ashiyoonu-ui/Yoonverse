@@ -24,9 +24,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="/style.css?v=4.1">
+  <link rel="stylesheet" href="/style.css?v=5.0">
   <script>(function () { try { const t = localStorage.getItem('yoonverse_theme'); if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme:dark)').matches)) { document.documentElement.setAttribute('data-theme', 'dark'); } } catch (e) { } })();</script>
-
 </head>
 
 <body>
@@ -38,14 +37,14 @@
       <ul class="nav-links">
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
-        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/blog/">SEO Guides</a></li>
         <li><a href="/contact">Contact</a></li>
-        <li class="mobile-cta-item"><a href="/blog/" class="mobile-menu-cta">Start learning →</a></li>
+        <li class="mobile-cta-item"><a href="/blog/" class="mobile-menu-cta">Start reading →</a></li>
       </ul>
       <div class="nav-actions">
         <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode" title="Toggle theme"><span
             class="theme-icon">🌙</span></button>
-        <a href="/blog/" class="btn btn-dark btn-sm" id="nav-cta">Start learning <span class="arrow">→</span></a>
+        <a href="/blog/" class="btn btn-dark btn-sm" id="nav-cta">Start reading <span class="arrow">→</span></a>
         <button class="menu-btn" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
       </div>
     </nav>
@@ -59,157 +58,53 @@
       </div>
     </section>
   </main>
-  <footer class="site-footer">
+  <!-- Clean, Calm Footer -->
+  <footer class="site-footer" style="padding: 3.5rem 0 2rem; border-top: 1px solid var(--line);">
     <div class="container">
-      <div class="footer-grid">
+      <div class="footer-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:2.5rem; margin-bottom:2.5rem;">
         <div>
-          <a href="/" class="logo"><img src="/yoonverse.webp" alt="Yoonverse" class="logo-img" width="38" height="38"
-              style="width:38px;height:38px;max-width:38px;max-height:38px;border-radius:50%;object-fit:cover;display:inline-block;vertical-align:middle;border:1px solid var(--line);box-shadow:0 2px 6px rgba(29,27,24,.08);">Yoonverse</a>
-          <p>Free, honest SEO education and semantic search research by Ashiq in India. No paid courses, no gatekeeping.</p>
+          <a href="/" class="logo" style="margin-bottom:0.75rem; display:inline-block;">
+            <img src="/yoonverse.webp" alt="Yoonverse" class="logo-img" width="38" height="38"
+              style="width:38px;height:38px;max-width:38px;max-height:38px;border-radius:50%;object-fit:cover;display:inline-block;vertical-align:middle;border:1px solid var(--line);box-shadow:0 2px 6px rgba(29,27,24,.08);">
+            Yoonverse
+          </a>
+          <p style="color:var(--muted); font-size:0.9rem; line-height:1.6;">
+            Free, honest SEO education and organic search strategy by Ashiq in India.
+          </p>
         </div>
         <div>
-          <h4>Explore</h4>
-          <ul>
+          <h4 style="font-size:0.95rem; margin-bottom:0.75rem;">Navigation</h4>
+          <ul style="list-style:none; padding:0; line-height:2; font-size:0.9rem; color:var(--ink-soft);">
             <li><a href="/">Home</a></li>
             <li><a href="/about">About Ashiq</a></li>
-            <li><a href="/blog/">SEO Clusters</a></li>
+            <li><a href="/blog/">SEO Guides</a></li>
             <li><a href="/contact">Contact</a></li>
           </ul>
         </div>
         <div>
-          <h4>Topical Clusters</h4>
-          <ul>
-            <li><a href="/blog/semantic-seo-triples-knowledge-graph">Semantic Triples</a></li>
-            <li><a href="/blog/visual-semantic-seo-guide">Visual Semantic SEO</a></li>
-            <li><a href="/blog/topical-authority-content-clusters">Topical Authority</a></li>
-            <li><a href="/blog/seo-analyst-search-console-audit-framework">SEO Analyst Playbook</a></li>
+          <h4 style="font-size:0.95rem; margin-bottom:0.75rem;">Topics</h4>
+          <ul style="list-style:none; padding:0; line-height:2; font-size:0.9rem; color:var(--ink-soft);">
+            <li><a href="/blog/how-google-search-works">Crawling &amp; Indexing</a></li>
+            <li><a href="/blog/keyword-research-for-beginners">Search Intent &amp; Keywords</a></li>
+            <li><a href="/blog/topical-authority-content-clusters">Topic Authority</a></li>
+            <li><a href="/blog/technical-seo-checklist">Technical SEO Audits</a></li>
           </ul>
         </div>
         <div>
-          <h4>Connect</h4>
-          <ul>
-            <li><a href="mailto:hello@yoonverse.in">Email</a></li>
+          <h4 style="font-size:0.95rem; margin-bottom:0.75rem;">Connect</h4>
+          <ul style="list-style:none; padding:0; line-height:2; font-size:0.9rem; color:var(--ink-soft);">
+            <li><a href="mailto:hello@yoonverse.in">hello@yoonverse.in</a></li>
             <li><a href="https://www.instagram.com/yoonu_verse/" target="_blank" rel="noopener me">Instagram (@yoonu_verse)</a></li>
-            <li><a href="/about">Ashiq · Entity Profile</a></li>
           </ul>
         </div>
       </div>
-      <!-- THE SEO COSMOS (UNIVERSE OF SEO) -->
-      <div class="seo-cosmos-zone" id="seoCosmos">
-        <div class="cosmos-header">
-          <span class="cosmos-badge">✦ The SEO Cosmos ✦</span>
-          <h3 class="cosmos-title">Welcome to the Yoonverse</h3>
-          <p class="cosmos-caption">Where every search query is a star, and genuine human helpfulness is the gravity.
-          </p>
-        </div>
-
-        <div class="cosmos-stage">
-          <!-- Interactive Canvas for stars, constellation web, and comets -->
-          <canvas class="cosmos-canvas" id="cosmosCanvas"></canvas>
-
-          <!-- Orbital Ring Tracks -->
-          <div class="cosmos-orbit orbit-1" aria-hidden="true"></div>
-          <div class="cosmos-orbit orbit-2" aria-hidden="true"></div>
-          <div class="cosmos-orbit orbit-3" aria-hidden="true"></div>
-          <div class="cosmos-orbit orbit-4" aria-hidden="true"></div>
-
-          <!-- Orbiting SEO Celestial Bodies -->
-          <div class="celestial-body planet-intent" data-name="Search Intent"
-            data-desc="The gravitational core of modern SEO. Search engines reward whatever answers the human question best."
-            tabindex="0">
-            <span class="body-icon">🪐</span>
-            <span class="body-tag">Intent</span>
-          </div>
-
-          <div class="celestial-body planet-ai" data-name="AI Overviews &amp; GEO"
-            data-desc="Generative Engine Optimization: earning citations in ChatGPT, Gemini, and Perplexity answer capsules."
-            tabindex="0">
-            <span class="body-icon">✦</span>
-            <span class="body-tag">AI Search</span>
-          </div>
-
-          <div class="celestial-body planet-bot" data-name="Googlebot Explorer"
-            data-desc="Orbiting the web 24/7, traversing sitemaps and following internal links."
-            tabindex="0">
-            <span class="body-icon">🛰️</span>
-            <span class="body-tag">Googlebot</span>
-          </div>
-
-          <div class="celestial-body planet-eeat" data-name="E-E-A-T Star"
-            data-desc="Experience, Expertise, Authoritativeness &amp; Trust radiating through every guide."
-            tabindex="0">
-            <span class="body-icon">☀️</span>
-            <span class="body-tag">E-E-A-T</span>
-          </div>
-
-          <div class="celestial-body planet-schema" data-name="Semantic Schema"
-            data-desc="Structured JSON-LD entity data translating human prose directly into machine knowledge graphs."
-            tabindex="0">
-            <span class="body-icon">🧩</span>
-            <span class="body-tag">Schema</span>
-          </div>
-
-          <div class="celestial-body planet-authority" data-name="Topical Authority"
-            data-desc="Interconnected guides forming an inescapable cluster of search relevance."
-            tabindex="0">
-            <span class="body-icon">🌌</span>
-            <span class="body-tag">Authority</span>
-          </div>
-
-          <div class="celestial-body planet-links" data-name="Backlink Gravity"
-            data-desc="Inbound editorial recommendations that curve the algorithmic space-time continuum in your favor."
-            tabindex="0">
-            <span class="body-icon">🔗</span>
-            <span class="body-tag">Backlinks</span>
-          </div>
-
-          <div class="celestial-body planet-vitals" data-name="Core Web Vitals"
-            data-desc="The physics of speed: smooth LCP, low CLS, and instant INP keep visitors in orbit."
-            tabindex="0">
-            <span class="body-icon">⚡</span>
-            <span class="body-tag">Web Vitals</span>
-          </div>
-
-          <div class="celestial-body planet-console" data-name="Search Console Observatory"
-            data-desc="Deep space analytics tracking click trajectories, query impressions, and indexation health."
-            tabindex="0">
-            <span class="body-icon">📡</span>
-            <span class="body-tag">Search Console</span>
-          </div>
-
-          <div class="celestial-body planet-content" data-name="Helpful Content Pulse"
-            data-desc="Genuinely useful human answers that satisfy search intent and outlast every algorithm update."
-            tabindex="0">
-            <span class="body-icon">✍️</span>
-            <span class="body-tag">Content</span>
-          </div>
-
-          <!-- The Grand Galactic Core Wordmark with Liquid Flow -->
-          <div class="big-word-cosmic" id="cosmicWord">
-            <canvas class="liquid-word-canvas" id="liquidWordCanvas"></canvas>
-            <span class="cosmic-char">y</span><span class="cosmic-char">o</span><span class="cosmic-char">o</span><span
-              class="cosmic-char">n</span><span class="cosmic-char">v</span><span class="cosmic-char">e</span><span
-              class="cosmic-char">r</span><span class="cosmic-char">s</span><span class="cosmic-char">e</span>
-          </div>
-
-          <!-- Celestial Tooltip -->
-          <div class="cosmos-tooltip" id="cosmosTooltip" aria-hidden="true">
-            <span class="tooltip-chip">Cosmic SEO Entity</span>
-            <strong class="tooltip-title">Search Intent</strong>
-            <p class="tooltip-desc">The gravitational center of modern SEO.</p>
-          </div>
-        </div>
-
-        <div class="cosmos-footer-bar">
-          <span class="cosmos-hint"><span class="hint-sparkle">✨</span> Tap any celestial body to inspect · Move cursor
-            to draw constellation lines · Click to launch a crawl comet</span>
-        </div>
+      <div class="footer-bottom" style="border-top:1px solid var(--line); padding-top:1.5rem; font-size:0.85rem; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+        <span>© <span data-year>2026</span> Yoonverse · yoonverse.in</span>
+        <span>Made for learners · Hosted on Cloudflare</span>
       </div>
-      <div class="footer-bottom"><span>© <span data-year>2026</span> Yoonverse · yoonverse.in</span><span>Made for
-          learners, hosted on Cloudflare</span></div>
     </div>
   </footer>
-  <script src="/script.js?v=4.1" defer></script>
+  <script src="/script.js?v=5.0" defer></script>
 </body>
 
 </html>
