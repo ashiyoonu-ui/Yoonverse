@@ -1,41 +1,41 @@
 /* ==========================================================================
-   Yoonverse — Editorial Beige Design System
+   Yoonverse — Natural Botanical & Earth Design System
    ========================================================================== */
 :root {
-  --bg: #f6f1e8;
-  --bg-soft: #efe7da;
-  --surface: #fffdf9;
-  --ink: #1d1b18;
-  --ink-soft: #4a453e;
-  --muted: #7d766b;
-  --line: #e2d8c8;
-  --accent: #c0532a;
-  --accent-soft: #f4dccf;
-  --olive: #4f5d3f;
-  --olive-soft: #e3e6d6;
+  --bg: #f7f6f2;
+  --bg-soft: #edebe0;
+  --surface: #ffffff;
+  --ink: #1a201b;
+  --ink-soft: #3a443b;
+  --muted: #687469;
+  --line: #dde1d6;
+  --accent: #2b5a3d;
+  --accent-soft: #e5efe7;
+  --olive: #476644;
+  --olive-soft: #eaf0e8;
   --serif: 'Fraunces', Georgia, serif;
   --sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
-  --radius: 18px;
-  --radius-sm: 10px;
-  --shadow: 0 1px 2px rgba(29, 27, 24, .04), 0 12px 32px -12px rgba(29, 27, 24, .12);
+  --radius: 16px;
+  --radius-sm: 9px;
+  --shadow: 0 2px 6px rgba(26, 32, 27, .04), 0 14px 30px -10px rgba(26, 32, 27, .09);
   --ease: cubic-bezier(.16, 1, .3, 1);
   --max: 1160px;
 }
 
 [data-theme="dark"] {
-  --bg: #141311;
-  --bg-soft: #1d1b18;
-  --surface: #1b1916;
-  --ink: #f5eee3;
-  --ink-soft: #c9c0b1;
-  --muted: #8c8375;
-  --line: #2b2721;
-  --accent: #e26d42;
-  --accent-soft: #382218;
-  --olive: #92a97a;
-  --olive-soft: #252e1d;
-  --shadow: 0 1px 3px rgba(0, 0, 0, .4), 0 16px 36px -12px rgba(0, 0, 0, .6);
+  --bg: #101411;
+  --bg-soft: #161c17;
+  --surface: #1a221c;
+  --ink: #f0f4ee;
+  --ink-soft: #c2cdc0;
+  --muted: #7c8a7b;
+  --line: #243026;
+  --accent: #60a978;
+  --accent-soft: #1b3122;
+  --olive: #87b380;
+  --olive-soft: #1b261c;
+  --shadow: 0 2px 10px rgba(0, 0, 0, .4), 0 18px 36px -10px rgba(0, 0, 0, .6);
 }
 
 [data-theme="dark"] body::before {
